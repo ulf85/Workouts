@@ -14,3 +14,4 @@ So far I have functions for
 + cycling
 + indoor cycling
 
+Remark: The documentation is in German, since it was just indended to be used by me.
