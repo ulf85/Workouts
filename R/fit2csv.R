@@ -32,10 +32,7 @@ fit2csv <- function(path, file){
 #' @param path charater-String mit absolutem Pfad bis zum Ordner
 #' (Leider ist der absolute Pfad notwendig für die EXE im Hintergrund)
 #'
-#' @return
 #' @export
-#'
-#' @examples
 #'
 
 fit2csvOrdner <- function(ordner, path){

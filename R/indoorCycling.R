@@ -214,7 +214,7 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling"){
 #'
 #' @param indoorCyclingData data.frame mit den Fitness-Daten
 #'
-#' @return
+#' @return summaryIndoorCycling data.frame
 #' @export
 #' @import dplyr
 #'
