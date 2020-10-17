@@ -1,6 +1,8 @@
 # Workouts
 Package collecting my functions around my workout analysis
 
+![R-CMD-check](https://github.com/ulf85/Workouts/workflows/R-CMD-check/badge.svg)
+
 I started to export my workouts recorded by my Wahoo app to Excel and make some analysis on it.
 To export the data I store the workouts as `.fit`-files in my `fit`-directory and extract the important data with the programm [GPSBabel](https://www.gpsbabel.org/) 
 to an Excel file in the `fixed`-directory.
