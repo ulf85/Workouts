@@ -7,13 +7,13 @@
 #' @export
 #'
 #' @examples
-getIndoorCyclingData <- function(path, file){
+getIndoorCyclingData <- function(path, file) {
 
   rawData <- read_csv(file = paste0(path, file), col_types = cols())
 
   rawData$Zeit <- as.POSIXct(rawData$Time,
                              origin = rawData$Date[1], format = "%H:%M:%S")
-  if(is.null(rawData$Cadence)) rawData$Cadence <- NA
+  if (is.null(rawData$Cadence)) rawData$Cadence <- NA
 
   rawData <- rawData %>% rename("Herzrate" = "Heartrate",
                                 "Datum" = "Date",
@@ -21,15 +21,15 @@ getIndoorCyclingData <- function(path, file){
                                 "Trittanzahl" = "Cadence")
   rawData$Geschwindigkeit[is.na(rawData$Geschwindigkeit)] <- 0
   rawData$Geschwindigkeit <- rawData$Geschwindigkeit * 3.6
-  rawData$tmp_Distanz <- rawData$Geschwindigkeit * 1/(60 * 60)
+  rawData$tmp_Distanz <- rawData$Geschwindigkeit * 1 / (60 * 60)
   rawData$Distanz <- cumsum(rawData$tmp_Distanz)
 
   # Pausen als inaktiv markieren; Indiz: min 10 Sek Geschwindigkeit = 0
   rawData$aktiv <- TRUE
   ind <- which(rawData$Geschwindigkeit == 0)
   n <- length(rawData$Geschwindigkeit)
-  for(i in ind){
-    if(all(rawData$Geschwindigkeit[i:min(n, (i+10))] == 0)){
+  for (i in ind) {
+    if (all(rawData$Geschwindigkeit[i:min(n, (i + 10))] == 0)) {
       rawData$aktiv[i] <- FALSE
     }
   }
@@ -52,25 +52,25 @@ getIndoorCyclingData <- function(path, file){
 #' @import ggplot2
 #'
 #' @examples
-plotIndoorCycling <- function(rawData, type = "IndoorCycling"){
+plotIndoorCycling <- function(rawData, type = "IndoorCycling") {
 
   tag <- rawData$Datum[1]
-  Trainingszeit <- nrow(rawData[rawData$aktiv == TRUE, ])/60
-  Trainingszeit <- as.difftime(round(as.numeric(Trainingszeit, units = "mins"), 2), units="mins")
+  Trainingszeit <- nrow(rawData[rawData$aktiv == TRUE, ]) / 60
+  Trainingszeit <- as.difftime(round(as.numeric(Trainingszeit, units = "mins"), 2), units = "mins")
 
   rawData2 <- rawData
   # Es kann vorkommen, dass die Trittanzahl nicht gemessen wird oder nicht korrekt gemessen wird
   # wenn die Anzahl der NAs zu groß ist, macht es keinen Sinn diese auszuwerten
   # als Seiteneffekt werden hier auch noch die NAs gefiltert
   if (type == "Cycling") {
-    if (all(is.na(rawData$Trittanzahl)) | sum(is.na(rawData$Trittanzahl))/nrow(rawData) > 0.5) {
-      rawData <- rawData %>% filter(Geschwindigkeit > 10)
+    if (all(is.na(rawData$Trittanzahl)) | sum(is.na(rawData$Trittanzahl)) / nrow(rawData) > 0.5) {
+      rawData <- rawData[rawData$Geschwindigkeit > 10, ]
     } else {
-      rawData <- rawData %>% filter(Geschwindigkeit > 10 & Trittanzahl > 10)
+      rawData <- rawData[rawData$Geschwindigkeit > 10 & rawData$Trittanzahl > 10, ]
     }
   }
 
-  if(all(is.na(rawData$Trittanzahl)) | sum(is.na(rawData$Trittanzahl))/nrow(rawData) > 0.5){
+  if (all(is.na(rawData$Trittanzahl)) | sum(is.na(rawData$Trittanzahl)) / nrow(rawData) > 0.5) {
     tidyData <- rawData %>%
       filter(aktiv == TRUE) %>%
       select(Zeit, Geschwindigkeit, Herzrate) %>%
@@ -87,7 +87,7 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling"){
     geom_line() +
     ylab(NULL) +
     scale_x_datetime(breaks = waiver(), labels = date_format("%H:%M")) +
-    ggtitle(paste0(as.character.Date(tag, format="%d.%m.%Y"), " (", type, " ",
+    ggtitle(paste0(as.character.Date(tag, format = "%d.%m.%Y"), " (", type, " ",
                    round(sum(rawData2$tmp_Distanz), 2), "km, ",
                    Trainingszeit, units(Trainingszeit), ")"))
 
@@ -95,20 +95,20 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling"){
     p <- p + facet_wrap(~Feature, nrow = 1, scales = "free_y", strip.position = "left",
                labeller = as_labeller(c(Geschwindigkeit = "km/h",
                                         Herzrate = "bpm",
-                                        Trittanzahl = "rpm") ))
+                                        Trittanzahl = "rpm")))
   } else {
     p <- p + facet_wrap(~Feature, nrow = 1, scales = "free_y", strip.position = "left",
                labeller = as_labeller(c(Geschwindigkeit = "km/h",
-                                        Herzrate = "bpm") ))
+                                        Herzrate = "bpm")))
   }
 
-  if(type == "Cycling"){
+  if (type == "Cycling") {
     p <- p + geom_smooth(method = "auto")
   }
 
 
   zeitspanne <- range(tidyData$Zeit, na.rm = TRUE)
-  mitte <- zeitspanne[1] + diff(zeitspanne)/2
+  mitte <- zeitspanne[1] + diff(zeitspanne) / 2
   rangeHerzrate <- range(tidyData$Wert[tidyData$Feature == "Herzrate"], na.rm = TRUE)
 
   if (rangeHerzrate[1] < 120) {
@@ -129,11 +129,11 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling"){
                 nudge_y = -1,
                 inherit.aes = FALSE)
   }
-  if(rangeHerzrate[1] < 140 &
-     rangeHerzrate[2] >= 120){
+  if (rangeHerzrate[1] < 140 &
+      rangeHerzrate[2] >= 120) {
     p <- p +
       geom_rect(data = data.frame(Feature = rep("Herzrate", 1), stringsAsFactors = FALSE),
-                aes(ymin = max(120,rangeHerzrate[1]),
+                aes(ymin = max(120, rangeHerzrate[1]),
                     ymax = min(140, rangeHerzrate[2]),
                     xmin = min(tidyData$Zeit),
                     xmax = max(tidyData$Zeit)
@@ -148,11 +148,11 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling"){
                 nudge_y = -1,
                 inherit.aes = FALSE)
   }
-  if(rangeHerzrate[1] < 158 &
-     rangeHerzrate[2] >= 140){
+  if (rangeHerzrate[1] < 158 &
+      rangeHerzrate[2] >= 140) {
     p <- p +
       geom_rect(data = data.frame(Feature = rep("Herzrate", 1), stringsAsFactors = FALSE),
-                aes(ymin = max(140,rangeHerzrate[1]),
+                aes(ymin = max(140, rangeHerzrate[1]),
                     ymax = min(158, rangeHerzrate[2]),
                     xmin = min(tidyData$Zeit),
                     xmax = max(tidyData$Zeit)
@@ -167,11 +167,11 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling"){
                 nudge_y = -1,
                 inherit.aes = FALSE)
   }
-  if(rangeHerzrate[1] < 177 &
-     rangeHerzrate[2] >= 158){
+  if (rangeHerzrate[1] < 177 &
+      rangeHerzrate[2] >= 158) {
     p <- p +
       geom_rect(data = data.frame(Feature = rep("Herzrate", 1), stringsAsFactors = FALSE),
-                aes(ymin = max(158,rangeHerzrate[1]),
+                aes(ymin = max(158, rangeHerzrate[1]),
                     ymax = min(177, rangeHerzrate[2]),
                     xmin = min(tidyData$Zeit),
                     xmax = max(tidyData$Zeit)
@@ -186,10 +186,10 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling"){
                 nudge_y = -1,
                 inherit.aes = FALSE)
   }
-  if(rangeHerzrate[2] >= 177){
+  if (rangeHerzrate[2] >= 177) {
     p <- p +
       geom_rect(data = data.frame(Feature = rep("Herzrate", 1), stringsAsFactors = FALSE),
-                aes(ymin = max(177,rangeHerzrate[1]),
+                aes(ymin = max(177, rangeHerzrate[1]),
                     ymax = rangeHerzrate[2],
                     xmin = min(tidyData$Zeit),
                     xmax = max(tidyData$Zeit)
@@ -219,7 +219,7 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling"){
 #' @import dplyr
 #'
 #' @examples
-getSummaryIndoorCycling <- function(indoorCyclingData){
+getSummaryIndoorCycling <- function(indoorCyclingData) {
   summaryIndoorCycling1 <- indoorCyclingData %>%
     group_by(trainingNR) %>%
     summarise(Mean = mean(Geschwindigkeit, na.rm = TRUE),
@@ -249,4 +249,3 @@ getSummaryIndoorCycling <- function(indoorCyclingData){
                                     summaryIndoorCycling3)
   return(summaryIndoorCycling)
 }
-

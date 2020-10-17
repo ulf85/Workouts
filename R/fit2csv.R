@@ -10,7 +10,7 @@
 #' @note Das Programm GPSBabel muss installiert sein
 #'
 #' @examples
-fit2csv <- function(path, file){
+fit2csv <- function(path, file) {
 
   outfile <- gsub(pattern = ".fit", replacement = ".csv", x = file)
   outpath <- gsub(pattern = "fit", replacement = "fixed", x = path)
@@ -19,7 +19,7 @@ fit2csv <- function(path, file){
 
   out <- system(befehl, intern = TRUE)
 
-  if(length(out) == 0) return(TRUE)
+  if (length(out) == 0) return(TRUE)
   else return(FALSE)
 }
 
@@ -35,16 +35,16 @@ fit2csv <- function(path, file){
 #' @export
 #'
 
-fit2csvOrdner <- function(ordner, path){
+fit2csvOrdner <- function(ordner, path) {
   path <- paste0(path, "/", ordner, "/fit/")
   files <- dir(path)
   outpath <- gsub(pattern = "fit", replacement = "fixed", x = path)
   outfiles <- dir(outpath)
 
   # nur die umwandeln, die noch nicht existieren
-  for(file in files){
+  for (file in files) {
     outfile <- gsub(pattern = ".fit", replacement = ".csv", x = file)
-    if(!(outfile %in% outfiles)){
+    if (!(outfile %in% outfiles)) {
       fit2csv(path, file)
     }
   }
