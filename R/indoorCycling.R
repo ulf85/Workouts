@@ -247,5 +247,8 @@ getSummaryIndoorCycling <- function(indoorCyclingData) {
   summaryIndoorCycling <- bind_rows(summaryIndoorCycling1,
                                     summaryIndoorCycling2,
                                     summaryIndoorCycling3)
+  summaryIndoorCycling <- summaryIndoorCycling %>%
+    left_join(indoorCyclingData %>% distinct(trainingNR, Datum))
+
   return(summaryIndoorCycling)
 }

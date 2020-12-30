@@ -226,5 +226,9 @@ getSummaryWalking <- function(walkingData) {
 
 
   summaryWalking <- bind_rows(summaryWalking1, summaryWalking2)
+
+  summaryWalking <- summaryWalking %>%
+    left_join(walkingData %>% distinct(trainingNR, Datum))
+
   return(summaryWalking)
 }

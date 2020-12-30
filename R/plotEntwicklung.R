@@ -16,10 +16,13 @@ plotEntwicklung <- function(data) {
   data$ymax <- round(pmin(data$Max, data$Mean + 2 * data$Sd), 0)
   data$Mean <- round(data$Mean, 2)
 
-  p <- ggplot(data = data, aes(x = trainingNR, y = Mean)) +
+  p <- ggplot(data = data, aes(x = Datum, y = Mean)) +
     geom_line() +
     ylab("") +
+    xlab("") +
     geom_ribbon(aes(ymin = ymin, ymax = ymax), fill = "lightblue", alpha = 0.7) +
-    facet_wrap(~Messwert, scales = "free_y")
+    facet_wrap(~Messwert, scales = "free_y") +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+    scale_x_date(date_breaks = "3 month", minor_breaks = "1 month", labels = date_format("%Y-%m"))
   ggplotly(p)
 }
