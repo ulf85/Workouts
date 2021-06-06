@@ -4,7 +4,7 @@
 #'
 #' @param data data.frame mit Daten der Sportart, die dargestellt werden soll
 #'
-#' @return ggplotly-Objekt
+#' @return ggplot-Objekt
 #' @export
 #' @import ggplot2
 #' @import plotly
@@ -24,5 +24,6 @@ plotEntwicklung <- function(data) {
     facet_wrap(~Messwert, scales = "free_y") +
     theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
     scale_x_date(date_breaks = "3 month", minor_breaks = "1 month", labels = date_format("%Y-%m"))
-  ggplotly(p)
+  #ggplotly(p)
+  p
 }
