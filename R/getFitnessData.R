@@ -7,13 +7,15 @@
 #' @param path character-string mit dem Pfad-Namen bis zu dem Ordner
 #' @param skip vector mit Indices mit zu überspringenden Dateien in dem Ordner;
 #' default: skip = NULL
+#' @param trainingsNR eine Art Index; default: trainingNR = 1; kann übergeben werden wenn mit
+#' delta-Verfahren die Daten geladen werden. Dann nächste noch nicht vergebene Nummer
 #'
 #' @return Data eingelesene Daten
 #' @export
 #' @import dplyr
 #'
-#' @examples
-getFitnessData <- function(ordner, path, skip = NULL) {
+
+getFitnessData <- function(ordner, path, skip = NULL, trainingNR = 1) {
   if (is.null(ordner) || length(ordner) == 0) return(NULL)
   if (length(ordner) > 1) return(NULL)
   if (!(ordner %in% c("walking", "indoorCycling", "running", "cycling"))) return(NULL)
@@ -25,7 +27,6 @@ getFitnessData <- function(ordner, path, skip = NULL) {
   if (length(files) <= 0) return(NULL)
 
   Data <- NULL
-  trainingNR <- 1
   for (file in files) {
     if (ordner %in% c("walking", "running")) {
       rawData <- getWalkingData(path, file)
