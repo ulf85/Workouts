@@ -63,6 +63,18 @@ createUebersicht <- function(data, sportart = "Indoor Cycling") {
     uebersicht$`Max km/h` <- as.numeric(uebersicht$`Max km/h`)
     uebersicht$`&empty; bpm` <- as.numeric(uebersicht$`&empty; bpm`)
     uebersicht$`Max bpm` <- as.numeric(uebersicht$`Max bpm`)
+
+    if ("Altitude" %in% names(data) && !is.null(data$Altitude) && !all(is.na(data$Altitude))) {
+      data$diffAltitude <- c(0, diff(data$Altitude))
+      uebersicht3 <- data %>%
+        filter(aktiv == TRUE) %>%
+        group_by(Datum, trainingNR) %>%
+        summarise(
+          Aufstieg = sum(diffAltitude[diffAltitude > 0], na.rm = TRUE),
+          Abstieg = -sum(diffAltitude[diffAltitude < 0], na.rm = TRUE)
+        )
+      uebersicht <- uebersicht %>% inner_join(uebersicht3)
+    }
   }
 
   return(uebersicht)
