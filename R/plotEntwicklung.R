@@ -9,7 +9,7 @@
 #' @import ggplot2
 #' @import plotly
 #'
-#' @examples
+
 plotEntwicklung <- function(data) {
   data <- data[!is.nan(data$Mean) & data$Mean > 1, ]
   data$ymin <- round(pmax(data$Min, data$Mean - 2 * data$Sd), 0)

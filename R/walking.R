@@ -10,7 +10,7 @@
 #' @import readr
 #' @import dplyr
 #'
-#' @examples
+
 getWalkingData <- function(path, file) {
 
   rawData <- read_csv(file = paste0(path, file), col_types = cols())
@@ -71,7 +71,7 @@ getWalkingData <- function(path, file) {
 #' @import dplyr
 #' @import tidyr
 #'
-#' @examples
+
 plotWalking <- function(rawData, type = "Walking") {
 
   tag <- rawData$Datum[1]
@@ -206,7 +206,7 @@ plotWalking <- function(rawData, type = "Walking") {
 #' @export
 #' @import dplyr
 #'
-#' @examples
+
 getSummaryWalking <- function(walkingData) {
   summaryWalking1 <- walkingData %>%
     group_by(trainingNR) %>%

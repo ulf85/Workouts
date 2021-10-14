@@ -9,7 +9,7 @@
 #' @export
 #' @note Das Programm GPSBabel muss installiert sein
 #'
-#' @examples
+
 fit2csv <- function(path, file) {
 
   outfile <- gsub(pattern = ".fit", replacement = ".csv", x = file)

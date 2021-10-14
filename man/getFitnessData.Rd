@@ -4,7 +4,7 @@
 \alias{getFitnessData}
 \title{Einlesen der Fitness-Daten aus den CSV Dateien}
 \usage{
-getFitnessData(ordner, path, skip = NULL)
+getFitnessData(ordner, path, skip = NULL, trainingNR = 1)
 }
 \arguments{
 \item{ordner}{character-String mit dem Ordner-Namen
@@ -14,6 +14,9 @@ getFitnessData(ordner, path, skip = NULL)
 
 \item{skip}{vector mit Indices mit zu überspringenden Dateien in dem Ordner;
 default: skip = NULL}
+
+\item{trainingsNR}{eine Art Index; default: trainingNR = 1; kann übergeben werden wenn mit
+delta-Verfahren die Daten geladen werden. Dann nächste noch nicht vergebene Nummer}
 }
 \value{
 Data eingelesene Daten

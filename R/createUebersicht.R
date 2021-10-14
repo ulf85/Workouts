@@ -11,7 +11,7 @@
 #' @import dplyr
 #' @import scales
 #'
-#' @examples
+
 createUebersicht <- function(data, sportart = "Indoor Cycling") {
   uebersicht <- NULL
 

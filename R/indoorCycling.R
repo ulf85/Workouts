@@ -6,7 +6,7 @@
 #' @return rawData data.frame mit den aufbereiteten Daten
 #' @export
 #'
-#' @examples
+
 getIndoorCyclingData <- function(path, file) {
 
   rawData <- read_csv(file = paste0(path, file), col_types = cols())
@@ -51,7 +51,7 @@ getIndoorCyclingData <- function(path, file) {
 #' @export
 #' @import ggplot2
 #'
-#' @examples
+
 plotIndoorCycling <- function(rawData, type = "IndoorCycling") {
 
   tag <- rawData$Datum[1]
@@ -218,7 +218,7 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling") {
 #' @export
 #' @import dplyr
 #'
-#' @examples
+
 getSummaryIndoorCycling <- function(indoorCyclingData) {
   summaryIndoorCycling1 <- indoorCyclingData %>%
     group_by(trainingNR) %>%

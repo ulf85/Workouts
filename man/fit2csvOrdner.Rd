@@ -12,14 +12,8 @@ fit2csvOrdner(ordner, path)
 \item{path}{charater-String mit absolutem Pfad bis zum Ordner
 (Leider ist der absolute Pfad notwendig für die EXE im Hintergrund)}
 }
-\value{
-
-}
 \description{
 Transformiere einen ganzen Ordner vom .fit-Format in CSV
-}
-\examples{
-
 }
 \author{
 Ulf Schepsmeier

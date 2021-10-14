@@ -10,7 +10,7 @@ plotEntwicklung(data)
 \item{data}{data.frame mit Daten der Sportart, die dargestellt werden soll}
 }
 \value{
-ggplotly-Objekt
+ggplot-Objekt
 }
 \description{
 Plot um die Entwicklung ueber die Zeit darzustellen

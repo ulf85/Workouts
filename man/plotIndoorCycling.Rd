@@ -17,3 +17,7 @@ ggplot2-Objekt
 \description{
 Plot fuer Indoor Cycling oder Cycling Daten
 }
+\note{
+Der Plot für die Herzrate hat jetzt als neues Feature noch die Herzratzonen farblich hinterlegt.
+Die Zonen basieren auf meinen Daten (männlich, 35 Jahre, 80km, 1.86m)
+}

@@ -10,7 +10,7 @@ getSummaryIndoorCycling(indoorCyclingData)
 \item{indoorCyclingData}{data.frame mit den Fitness-Daten}
 }
 \value{
-
+summaryIndoorCycling data.frame
 }
 \description{
 Erzeuge eine Zusammenfassung der Daten fuer Indoor Cycling oder Cycling
