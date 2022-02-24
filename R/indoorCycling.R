@@ -221,7 +221,7 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling") {
 
 getSummaryIndoorCycling <- function(indoorCyclingData) {
   summaryIndoorCycling1 <- indoorCyclingData %>%
-    group_by(trainingNR) %>%
+    group_by(trainingNR, Datum) %>%
     summarise(Mean = mean(Geschwindigkeit, na.rm = TRUE),
               Sd = sd(Geschwindigkeit, na.rm = TRUE),
               Min = min(Geschwindigkeit, na.rm = TRUE),
@@ -229,7 +229,7 @@ getSummaryIndoorCycling <- function(indoorCyclingData) {
     mutate(Messwert = "Geschwindigkeit")
 
   summaryIndoorCycling2 <- indoorCyclingData %>%
-    group_by(trainingNR) %>%
+    group_by(trainingNR, Datum) %>%
     summarise(Mean = mean(Herzrate, na.rm = TRUE),
               Sd = sd(Herzrate, na.rm = TRUE),
               Min = min(Herzrate, na.rm = TRUE),
@@ -237,7 +237,7 @@ getSummaryIndoorCycling <- function(indoorCyclingData) {
     mutate(Messwert = "Herzrate")
 
   summaryIndoorCycling3 <- indoorCyclingData %>%
-    group_by(trainingNR) %>%
+    group_by(trainingNR, Datum) %>%
     summarise(Mean = mean(Trittanzahl, na.rm = TRUE),
               Sd = sd(Trittanzahl, na.rm = TRUE),
               Min = min(Trittanzahl, na.rm = TRUE),
@@ -249,6 +249,7 @@ getSummaryIndoorCycling <- function(indoorCyclingData) {
                                     summaryIndoorCycling3)
   summaryIndoorCycling <- summaryIndoorCycling %>%
     left_join(indoorCyclingData %>% distinct(trainingNR, Datum))
+  summaryIndoorCycling <- summaryIndoorCycling %>% arrange(Datum)
 
   return(summaryIndoorCycling)
 }

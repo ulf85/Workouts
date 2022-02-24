@@ -209,7 +209,7 @@ plotWalking <- function(rawData, type = "Walking") {
 
 getSummaryWalking <- function(walkingData) {
   summaryWalking1 <- walkingData %>%
-    group_by(trainingNR) %>%
+    group_by(trainingNR, Datum) %>%
     summarise(Mean = mean(Geschwindigkeit, na.rm = TRUE),
               Sd = sd(Geschwindigkeit, na.rm = TRUE),
               Min = min(Geschwindigkeit, na.rm = TRUE),
@@ -217,7 +217,7 @@ getSummaryWalking <- function(walkingData) {
     mutate(Messwert = "Geschwindigkeit")
 
   summaryWalking2 <- walkingData %>%
-    group_by(trainingNR) %>%
+    group_by(trainingNR, Datum) %>%
     summarise(Mean = mean(Herzrate, na.rm = TRUE),
               Sd = sd(Herzrate, na.rm = TRUE),
               Min = min(Herzrate, na.rm = TRUE),
@@ -229,6 +229,7 @@ getSummaryWalking <- function(walkingData) {
 
   summaryWalking <- summaryWalking %>%
     left_join(walkingData %>% distinct(trainingNR, Datum))
+  summaryWalking <- summaryWalking %>% arrange(Datum)
 
   return(summaryWalking)
 }
