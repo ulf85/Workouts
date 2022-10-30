@@ -97,6 +97,12 @@ plotWalking <- function(rawData, type = "Walking") {
   zeitspanne <- range(tidyData$Zeit, na.rm = TRUE)
   mitte <- zeitspanne[1] + diff(zeitspanne) / 2
   rangeHerzrate <- range(tidyData$Wert[tidyData$Feature == "Herzrate"], na.rm = TRUE)
+  cutHerzrate <- cut(x = tidyData$Wert[tidyData$Feature == "Herzrate"],
+                     breaks = c(1, 120, 140, 158, 177, 200))
+  tableHerzrate <- table(cutHerzrate)
+  tableHerzrate <- tableHerzrate[tableHerzrate > 0] / sum(tableHerzrate[tableHerzrate > 0]) * 100
+  tableHerzrate <- round(tableHerzrate, 0)
+  tableHerzrate <- as.data.frame(tableHerzrate)
 
   if (rangeHerzrate[1] < 120) {
     p <- p +
@@ -114,6 +120,14 @@ plotWalking <- function(rawData, type = "Walking") {
                 alpha = 0.5,
                 color = c("blue"),
                 nudge_y = -1,
+                inherit.aes = FALSE) +
+      geom_text(data = data.frame(Feature = "Herzrate", stringsAsFactors = FALSE),
+                aes(x = mitte, y = 110,
+                    label = paste0(tableHerzrate$Freq[tableHerzrate$cutHerzrate == "(1,120]"], "%")),
+                alpha = 0.5,
+                color = c("blue"),
+                nudge_y = -1,
+                size = 6,
                 inherit.aes = FALSE)
   }
   if (rangeHerzrate[1] < 140 &
@@ -133,6 +147,14 @@ plotWalking <- function(rawData, type = "Walking") {
                 alpha = 0.5,
                 color = c("darkgreen"),
                 nudge_y = -1,
+                inherit.aes = FALSE) +
+      geom_text(data = data.frame(Feature = "Herzrate", stringsAsFactors = FALSE),
+                aes(x = mitte, y = 130,
+                    label = paste0(tableHerzrate$Freq[tableHerzrate$cutHerzrate == "(120,140]"], "%")),
+                alpha = 0.5,
+                color = c("darkgreen"),
+                nudge_y = -1,
+                size = 6,
                 inherit.aes = FALSE)
   }
   if (rangeHerzrate[1] < 158 &
@@ -152,6 +174,14 @@ plotWalking <- function(rawData, type = "Walking") {
                 alpha = 0.5,
                 color = c("orange"),
                 nudge_y = -1,
+                inherit.aes = FALSE) +
+      geom_text(data = data.frame(Feature = "Herzrate", stringsAsFactors = FALSE),
+                aes(x = mitte, y = 150,
+                    label = paste0(tableHerzrate$Freq[tableHerzrate$cutHerzrate == "(140,158]"], "%")),
+                alpha = 0.5,
+                color = c("orange"),
+                nudge_y = -1,
+                size = 6,
                 inherit.aes = FALSE)
   }
   if (rangeHerzrate[1] < 177 &
@@ -171,6 +201,14 @@ plotWalking <- function(rawData, type = "Walking") {
                 alpha = 0.5,
                 color = c("red"),
                 nudge_y = -1,
+                inherit.aes = FALSE) +
+      geom_text(data = data.frame(Feature = "Herzrate", stringsAsFactors = FALSE),
+                aes(x = mitte, y = 165,
+                    label = paste0(tableHerzrate$Freq[tableHerzrate$cutHerzrate == "(158,177]"], "%")),
+                alpha = 0.5,
+                color = c("red"),
+                nudge_y = -1,
+                size = 6,
                 inherit.aes = FALSE)
   }
   if (rangeHerzrate[2] >= 177) {
@@ -189,6 +227,14 @@ plotWalking <- function(rawData, type = "Walking") {
                 alpha = 0.5,
                 color = c("pink"),
                 nudge_y = -1,
+                inherit.aes = FALSE) +
+      geom_text(data = data.frame(Feature = "Herzrate", stringsAsFactors = FALSE),
+                aes(x = mitte, y = 180,
+                    label = paste0(tableHerzrate$Freq[tableHerzrate$cutHerzrate == "(177,200]"], "%")),
+                alpha = 0.5,
+                color = c("pink"),
+                nudge_y = -1,
+                size = 6,
                 inherit.aes = FALSE)
   }
 
