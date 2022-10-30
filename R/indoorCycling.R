@@ -216,7 +216,7 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling") {
                 nudge_y = -1,
                 inherit.aes = FALSE) +
       geom_text(data = data.frame(Feature = "Herzrate", stringsAsFactors = FALSE),
-                aes(x = mitte, y = 165,
+                aes(x = mitte, y = 170,
                     label = paste0(tableHerzrate$Freq[tableHerzrate$cutHerzrate == "(158,177]"], "%")),
                 alpha = 0.5,
                 color = c("red"),
