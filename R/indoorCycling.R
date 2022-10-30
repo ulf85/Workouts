@@ -115,7 +115,7 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling") {
     p <- p +
       geom_rect(data = data.frame(Feature = rep("Herzrate", 1), stringsAsFactors = FALSE),
                 aes(ymin = rangeHerzrate[1],
-                    ymax = min(120, rangeHerzrate[2]),
+                    ymax = 120,
                     xmin = min(tidyData$Zeit),
                     xmax = max(tidyData$Zeit)
                 ),
@@ -123,7 +123,7 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling") {
                 fill = c("blue"),
                 inherit.aes = FALSE) +
       geom_text(data = data.frame(Feature = "Herzrate", stringsAsFactors = FALSE),
-                aes(x = mitte, y = min(120, rangeHerzrate[2]), label = c("Leicht")),
+                aes(x = mitte, y = 120, label = c("Leicht")),
                 alpha = 0.5,
                 color = c("blue"),
                 nudge_y = -1,
@@ -134,7 +134,7 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling") {
     p <- p +
       geom_rect(data = data.frame(Feature = rep("Herzrate", 1), stringsAsFactors = FALSE),
                 aes(ymin = max(120, rangeHerzrate[1]),
-                    ymax = min(140, rangeHerzrate[2]),
+                    ymax = 140,
                     xmin = min(tidyData$Zeit),
                     xmax = max(tidyData$Zeit)
                 ),
@@ -142,7 +142,7 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling") {
                 fill = c("green"),
                 inherit.aes = FALSE) +
       geom_text(data = data.frame(Feature = "Herzrate", stringsAsFactors = FALSE),
-                aes(x = mitte, y = min(140, rangeHerzrate[2]), label = c("Fettverbrennung")),
+                aes(x = mitte, y = 140, label = c("Fettverbrennung")),
                 alpha = 0.5,
                 color = c("darkgreen"),
                 nudge_y = -1,
@@ -153,7 +153,7 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling") {
     p <- p +
       geom_rect(data = data.frame(Feature = rep("Herzrate", 1), stringsAsFactors = FALSE),
                 aes(ymin = max(140, rangeHerzrate[1]),
-                    ymax = min(158, rangeHerzrate[2]),
+                    ymax = 158,
                     xmin = min(tidyData$Zeit),
                     xmax = max(tidyData$Zeit)
                 ),
@@ -161,7 +161,7 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling") {
                 fill = c("yellow"),
                 inherit.aes = FALSE) +
       geom_text(data = data.frame(Feature = "Herzrate", stringsAsFactors = FALSE),
-                aes(x = mitte, y = min(158, rangeHerzrate[2]), label = c("Kardio")),
+                aes(x = mitte, y = 158, label = c("Kardio")),
                 alpha = 0.5,
                 color = c("orange"),
                 nudge_y = -1,
@@ -172,7 +172,7 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling") {
     p <- p +
       geom_rect(data = data.frame(Feature = rep("Herzrate", 1), stringsAsFactors = FALSE),
                 aes(ymin = max(158, rangeHerzrate[1]),
-                    ymax = min(177, rangeHerzrate[2]),
+                    ymax = 177,
                     xmin = min(tidyData$Zeit),
                     xmax = max(tidyData$Zeit)
                 ),
@@ -180,7 +180,7 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling") {
                 fill = c("red"),
                 inherit.aes = FALSE) +
       geom_text(data = data.frame(Feature = "Herzrate", stringsAsFactors = FALSE),
-                aes(x = mitte, y = min(177, rangeHerzrate[2]), label = c("Schwierig")),
+                aes(x = mitte, y = 177, label = c("Schwierig")),
                 alpha = 0.5,
                 color = c("red"),
                 nudge_y = -1,
