@@ -1,7 +1,7 @@
 #' Fitness and Fatigure plot
 #'
 #' @author Ulf Schepsmeier
-#' @note Date Daten werden von einem Jahr berechnet, aber nucr die letzten 180 Tage dargestellt
+#' @note Date Daten werden von einem Jahr berechnet, aber nur die letzten 180 Tage dargestellt
 #'
 #' @param df data.frame mit den Aufbereiteten Daten aus der Funktion calculateTL()
 #' @param toStr character; Enddatum in der Form "\%Y-\%m-\%d"
@@ -33,4 +33,32 @@ FitnessAndFatigurePlot <- function(df, toStr) {
     theme(legend.position = "none")
 
   return(p1)
+}
+
+
+#' Form plot
+#'
+#' @author Ulf Schepsmeier
+#' @note Date Daten werden von einem Jahr berechnet, aber nur die letzten 180 Tage dargestellt
+#'
+#' @param df data.frame mit den Aufbereiteten Daten aus der Funktion calculateTL()
+#' @param toStr character; Enddatum in der Form "\%Y-\%m-\%d"
+#'
+#' @return ggplot-Objekt
+#' @export
+#' @import ggplot2
+#'
+
+FormPlot <- function(df, toStr) {
+  p <- ggplot(df %>% filter(Date >= as.Date(toString) - 180), aes(x = Date, y = TSS)) +
+    geom_line(colour = "#0a0a0a", ) +
+    geom_rect(data = rects, inherit.aes = FALSE,
+              aes(xmin = xstart, xmax = xend, ymin = ystart, ymax = yend, fill = col),
+              alpha = 0.2) +
+    scale_fill_manual(values = c("#DDB140", "#58ABDF", "#A3A3A3", "#67C75D", "#CB2A1D")) +
+    labs(x = "", y = "Form") +
+    theme_bw() +
+    theme(legend.title = element_blank())
+
+  return(p)
 }
