@@ -263,6 +263,7 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling") {
 #' @return summaryIndoorCycling data.frame
 #' @export
 #' @import dplyr
+#' @importFrom stats sd
 #'
 
 getSummaryIndoorCycling <- function(indoorCyclingData) {

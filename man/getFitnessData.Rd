@@ -15,7 +15,7 @@ getFitnessData(ordner, path, skip = NULL, trainingNR = 1)
 \item{skip}{vector mit Indices mit zu überspringenden Dateien in dem Ordner;
 default: skip = NULL}
 
-\item{trainingsNR}{eine Art Index; default: trainingNR = 1; kann übergeben werden wenn mit
+\item{trainingNR}{eine Art Index; default: trainingNR = 1; kann übergeben werden wenn mit
 delta-Verfahren die Daten geladen werden. Dann nächste noch nicht vergebene Nummer}
 }
 \value{

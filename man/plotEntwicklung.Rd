@@ -4,10 +4,27 @@
 \alias{plotEntwicklung}
 \title{Plot um die Entwicklung ueber die Zeit darzustellen}
 \usage{
-plotEntwicklung(data)
+plotEntwicklung(
+  data,
+  date_breaks = "3 months",
+  date_minor_breaks = "1 month",
+  labels = date_format("\%Y-\%m"),
+  CI = TRUE,
+  trend = FALSE
+)
 }
 \arguments{
 \item{data}{data.frame mit Daten der Sportart, die dargestellt werden soll}
+
+\item{date_breaks}{Einteilung der x-Achse; default: date_breaks = "3 months"}
+
+\item{date_minor_breaks}{Untereinteilung der x-Achse; default: minor_breaks = "1 month"}
+
+\item{labels}{Label der x-Achse; default: labels = date_format("\%Y-\%m")}
+
+\item{CI}{Konfidenzband (Confidence interval) anzeigen? default CI = TRUE}
+
+\item{trend}{Soll ein Trend ermittelt und angezeigt werden? default: trend = FALSE}
 }
 \value{
 ggplot-Objekt

@@ -10,6 +10,7 @@
 #' @export
 #' @import dplyr
 #' @import scales
+#' @importFrom stats sd
 #'
 
 createUebersicht <- function(data, sportart = "Indoor Cycling") {

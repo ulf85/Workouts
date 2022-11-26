@@ -7,7 +7,7 @@
 #' @param path character-string mit dem Pfad-Namen bis zu dem Ordner
 #' @param skip vector mit Indices mit zu überspringenden Dateien in dem Ordner;
 #' default: skip = NULL
-#' @param trainingsNR eine Art Index; default: trainingNR = 1; kann übergeben werden wenn mit
+#' @param trainingNR eine Art Index; default: trainingNR = 1; kann übergeben werden wenn mit
 #' delta-Verfahren die Daten geladen werden. Dann nächste noch nicht vergebene Nummer
 #'
 #' @return Data eingelesene Daten

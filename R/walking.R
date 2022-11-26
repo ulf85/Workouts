@@ -251,6 +251,7 @@ plotWalking <- function(rawData, type = "Walking") {
 #' @return summaryWalking data.frame mit den aggregierten Daten
 #' @export
 #' @import dplyr
+#' @importFrom stats sd
 #'
 
 getSummaryWalking <- function(walkingData) {
