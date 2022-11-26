@@ -5,20 +5,20 @@
 #'
 #' @param df data.frame mit den Aufbereiteten Daten aus der Funktion calculateTL()
 #' @param toStr character; Enddatum in der Form "\%Y-\%m-\%d"
+#' @param date_breaks Einteilung der x-Achse; default: date_breaks = "1 months";
+#' wenn NULL, dann keine X-Achsen-Beschriftung
+#' @param date_minor_breaks Untereinteilung der x-Achse; default: minor_breaks = "1 month";
+#' wenn NULL, dann keine X-Achsen-Beschriftung
+#' @param labels Label der x-Achse; default: labels = date_format("\%Y-\%m");
+#' wenn NULL, dann keine X-Achsen-Beschriftung
 #'
 #' @return ggplot-Objekt
 #' @export
 #' @import ggplot2
 #'
 
-FitnessAndFatigurePlot <- function(df, toStr) {
-  # data frame for Form zones
-  rects <- data.frame(ystart = c(20, 5, -10, -30, -50),
-                      yend = c(30, 20, 5, -10, -30),
-                      xstart = rep(as.Date(toString) - 180, 5), # nehme von den 360 Tagen nur die letzten 180
-                      xend = rep(as.Date(toString), 5),
-                      col = factor(c("Transition", "Fresh", "Grey zone", "Optimal", "High risk"),
-                                   levels = c("Transition", "Fresh", "Grey zone", "Optimal", "High risk")))
+FitnessAndFatigurePlot <- function(df, toStr, date_breaks = "1 months", date_minor_breaks = "1 month",
+                                   labels = date_format("%Y-%m")) {
 
   p1 <- ggplot(df %>% filter(Date >= as.Date(toString) - 180), aes(x = Date)) +
     geom_area(aes(y = CTL), fill = "#58abdf", alpha = 0.2) +
@@ -32,6 +32,15 @@ FitnessAndFatigurePlot <- function(df, toStr) {
     theme_bw() +
     theme(legend.position = "none")
 
+  if (is.null(date_breaks) || is.null(date_minor_breaks) || is.null(labels)) {
+    p1 <- p1 + theme(axis.text.x = element_blank())
+  } else {
+    p1 <- p1 +
+      theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+      scale_x_date(date_breaks = date_breaks, date_minor_breaks = date_minor_breaks,
+                   labels = labels)
+  }
+
   return(p1)
 }
 
@@ -43,13 +52,29 @@ FitnessAndFatigurePlot <- function(df, toStr) {
 #'
 #' @param df data.frame mit den Aufbereiteten Daten aus der Funktion calculateTL()
 #' @param toStr character; Enddatum in der Form "\%Y-\%m-\%d"
+#' @param date_breaks Einteilung der x-Achse; default: date_breaks = "1 months";
+#' wenn NULL, dann keine X-Achsen-Beschriftung
+#' @param date_minor_breaks Untereinteilung der x-Achse; default: minor_breaks = "1 month";
+#' wenn NULL, dann keine X-Achsen-Beschriftung
+#' @param labels Label der x-Achse; default: labels = date_format("\%Y-\%m");
+#' wenn NULL, dann keine X-Achsen-Beschriftung
 #'
 #' @return ggplot-Objekt
 #' @export
 #' @import ggplot2
 #'
 
-FormPlot <- function(df, toStr) {
+FormPlot <- function(df, toStr, date_breaks = "1 months", date_minor_breaks = "1 month",
+                     labels = date_format("%Y-%m")) {
+
+  # data frame for Form zones
+  rects <- data.frame(ystart = c(20, 5, -10, -30, -50),
+                      yend = c(30, 20, 5, -10, -30),
+                      xstart = rep(as.Date(toString) - 180, 5), # nehme von den 360 Tagen nur die letzten 180
+                      xend = rep(as.Date(toString), 5),
+                      col = factor(c("Transition", "Fresh", "Grey zone", "Optimal", "High risk"),
+                                   levels = c("Transition", "Fresh", "Grey zone", "Optimal", "High risk")))
+
   p <- ggplot(df %>% filter(Date >= as.Date(toString) - 180), aes(x = Date, y = TSS)) +
     geom_line(colour = "#0a0a0a", ) +
     geom_rect(data = rects, inherit.aes = FALSE,
@@ -59,6 +84,15 @@ FormPlot <- function(df, toStr) {
     labs(x = "", y = "Form") +
     theme_bw() +
     theme(legend.title = element_blank())
+
+  if (is.null(date_breaks) || is.null(date_minor_breaks) || is.null(labels)) {
+    p1 <- p1 + theme(axis.text.x = element_blank())
+  } else {
+    p1 <- p1 +
+      theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+      scale_x_date(date_breaks = date_breaks, date_minor_breaks = date_minor_breaks,
+                   labels = labels)
+  }
 
   return(p)
 }

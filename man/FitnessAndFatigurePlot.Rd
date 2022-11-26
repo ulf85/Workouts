@@ -4,12 +4,27 @@
 \alias{FitnessAndFatigurePlot}
 \title{Fitness and Fatigure plot}
 \usage{
-FitnessAndFatigurePlot(df, toStr)
+FitnessAndFatigurePlot(
+  df,
+  toStr,
+  date_breaks = "1 months",
+  date_minor_breaks = "1 month",
+  labels = date_format("\%Y-\%m")
+)
 }
 \arguments{
 \item{df}{data.frame mit den Aufbereiteten Daten aus der Funktion calculateTL()}
 
 \item{toStr}{character; Enddatum in der Form "\%Y-\%m-\%d"}
+
+\item{date_breaks}{Einteilung der x-Achse; default: date_breaks = "1 months";
+wenn NULL, dann keine X-Achsen-Beschriftung}
+
+\item{date_minor_breaks}{Untereinteilung der x-Achse; default: minor_breaks = "1 month";
+wenn NULL, dann keine X-Achsen-Beschriftung}
+
+\item{labels}{Label der x-Achse; default: labels = date_format("\%Y-\%m");
+wenn NULL, dann keine X-Achsen-Beschriftung}
 }
 \value{
 ggplot-Objekt
