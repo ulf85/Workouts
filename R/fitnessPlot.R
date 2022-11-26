@@ -20,13 +20,13 @@
 FitnessAndFatigurePlot <- function(df, toStr, date_breaks = "1 months", date_minor_breaks = "1 month",
                                    labels = date_format("%Y-%m")) {
 
-  p1 <- ggplot(df %>% filter(Date >= as.Date(toString) - 180), aes(x = Date)) +
+  p1 <- ggplot(df %>% filter(Date >= as.Date(toStr) - 180), aes(x = Date)) +
     geom_area(aes(y = CTL), fill = "#58abdf", alpha = 0.2) +
     geom_line(aes(y = CTL), colour = "#58abdf") +
     geom_line(aes(y = ATL), colour = "#5e3cc4") +
-    geom_text(aes(x = as.Date(toString), y = 0, vjust = "inward", hjust = "inward", label = "Fitness"),
+    geom_text(aes(x = as.Date(toStr), y = 0, vjust = "inward", hjust = "inward", label = "Fitness"),
               color = "#58abdf") +
-    geom_text(aes(x = as.Date(toString) - 180, y = max(ATL), vjust = "inward", hjust = "inward", label = "Fatigue"),
+    geom_text(aes(x = as.Date(toStr) - 180, y = max(ATL), vjust = "inward", hjust = "inward", label = "Fatigue"),
               color = "#5e3cc4") +
     labs(x = "", y = "Training load per day") +
     theme_bw() +
@@ -70,12 +70,12 @@ FormPlot <- function(df, toStr, date_breaks = "1 months", date_minor_breaks = "1
   # data frame for Form zones
   rects <- data.frame(ystart = c(20, 5, -10, -30, -50),
                       yend = c(30, 20, 5, -10, -30),
-                      xstart = rep(as.Date(toString) - 180, 5), # nehme von den 360 Tagen nur die letzten 180
-                      xend = rep(as.Date(toString), 5),
+                      xstart = rep(as.Date(toStr) - 180, 5), # nehme von den 360 Tagen nur die letzten 180
+                      xend = rep(as.Date(toStr), 5),
                       col = factor(c("Transition", "Fresh", "Grey zone", "Optimal", "High risk"),
                                    levels = c("Transition", "Fresh", "Grey zone", "Optimal", "High risk")))
 
-  p <- ggplot(df %>% filter(Date >= as.Date(toString) - 180), aes(x = Date, y = TSS)) +
+  p <- ggplot(df %>% filter(Date >= as.Date(toStr) - 180), aes(x = Date, y = TSS)) +
     geom_line(colour = "#0a0a0a", ) +
     geom_rect(data = rects, inherit.aes = FALSE,
               aes(xmin = xstart, xmax = xend, ymin = ystart, ymax = yend, fill = col),
