@@ -88,7 +88,7 @@ FormPlot <- function(df, toStr, date_breaks = "1 months", date_minor_breaks = "1
   if (is.null(date_breaks) || is.null(date_minor_breaks) || is.null(labels)) {
     p1 <- p1 + theme(axis.text.x = element_blank())
   } else {
-    p1 <- p1 +
+    p <- p +
       theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
       scale_x_date(date_breaks = date_breaks, date_minor_breaks = date_minor_breaks,
                    labels = labels)
