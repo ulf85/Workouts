@@ -104,6 +104,13 @@ plotWalking <- function(rawData, type = "Walking") {
   tableHerzrate <- round(tableHerzrate, 0)
   tableHerzrate <- as.data.frame(tableHerzrate)
 
+  if (nrow(tableHerzrate) == 1) {
+    tmp <- data.frame(cutHerzrate = rownames(tableHerzrate),
+                      Freq = tableHerzrate[1, 1],
+                      stringsAsFactors = FALSE)
+    tableHerzrate <- tmp
+  }
+
   if (rangeHerzrate[1] < 120) {
     p <- p +
       geom_rect(data = data.frame(Feature = rep("Herzrate", 1), stringsAsFactors = FALSE),
