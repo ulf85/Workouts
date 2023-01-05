@@ -2,6 +2,7 @@
 #'
 #' @author Ulf Schepsmeier
 #' @note Date Daten werden von einem Jahr berechnet, aber nur die letzten 180 Tage dargestellt
+#' Plots basieren auf dem Code von [www.r-bloggers.com](https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/)
 #'
 #' @param df data.frame mit den Aufbereiteten Daten aus der Funktion calculateTL()
 #' @param toStr character; Enddatum in der Form "\%Y-\%m-\%d"
@@ -49,6 +50,7 @@ FitnessAndFatigurePlot <- function(df, toStr, date_breaks = "1 months", date_min
 #'
 #' @author Ulf Schepsmeier
 #' @note Date Daten werden von einem Jahr berechnet, aber nur die letzten 180 Tage dargestellt
+#' Plots basieren auf dem Code von [www.r-bloggers.com](https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/)
 #'
 #' @param df data.frame mit den Aufbereiteten Daten aus der Funktion calculateTL()
 #' @param toStr character; Enddatum in der Form "\%Y-\%m-\%d"

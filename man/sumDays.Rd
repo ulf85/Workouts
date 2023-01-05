@@ -17,6 +17,9 @@ newdf merged data.frame
 \description{
 Sum the load for each day
 }
+\note{
+Based on [www.r-bloggers.com](https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/)
+}
 \author{
 Ulf Schepsmeier
 }

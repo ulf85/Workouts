@@ -34,6 +34,7 @@ Form plot
 }
 \note{
 Date Daten werden von einem Jahr berechnet, aber nur die letzten 180 Tage dargestellt
+Plots basieren auf dem Code von [www.r-bloggers.com](https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/)
 }
 \author{
 Ulf Schepsmeier

@@ -17,6 +17,10 @@ calculate training loads
 }
 \note{
 Based on [www.r-bloggers.com](https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/)
+Although the stress score acronyms are copyrighted, what they do is not too mysterious.
+Fatigue is how tired you are feeling that week and Fitness is how much training you’ve done over six weeks.
+Put another way, Fatigue is an exponentially weighted average of load over 7 days while Fitness
+is an exponentially weight average of load over 42 days. Form is the difference between Fatigue and Fitness.
 }
 \author{
 Ulf Schepsmeier
