@@ -2,7 +2,7 @@
 % Please edit documentation in R/loadAndFitness.R
 \name{makeDateDF}
 \alias{makeDateDF}
-\title{Make a data frame that has every day in our time window represented}
+\title{Erzeugung eines leeren Fitness-DF}
 \usage{
 makeDateDF(fromStr, toStr)
 }
@@ -17,8 +17,8 @@ df
 \description{
 Make a data frame that has every day in our time window represented
 }
-\note{
-Based on [www.r-bloggers.com](https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/)
+\references{
+\url{https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/}
 }
 \author{
 Ulf Schepsmeier

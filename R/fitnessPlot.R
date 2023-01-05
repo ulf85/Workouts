@@ -1,16 +1,19 @@
-#' Fitness and Fatigure plot
+#' Plot fuer die Fitness und Fatigue
+#'
+#' Fitness and Fatigure plot based on the calcuated Fitness (CTL) and Fatigue (ATL) scores
 #'
 #' @author Ulf Schepsmeier
 #' @note Date Daten werden von einem Jahr berechnet, aber nur die letzten 180 Tage dargestellt
-#' Plots basieren auf dem Code von [www.r-bloggers.com](https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/)
+#'
+#' @references \url{https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/}
 #'
 #' @param df data.frame mit den Aufbereiteten Daten aus der Funktion calculateTL()
-#' @param toStr character; Enddatum in der Form "\%Y-\%m-\%d"
+#' @param toStr character; Enddatum in der Form "%Y-%m-%d"
 #' @param date_breaks Einteilung der x-Achse; default: date_breaks = "1 months";
 #' wenn NULL, dann keine X-Achsen-Beschriftung
 #' @param date_minor_breaks Untereinteilung der x-Achse; default: minor_breaks = "1 month";
 #' wenn NULL, dann keine X-Achsen-Beschriftung
-#' @param labels Label der x-Achse; default: labels = date_format("\%Y-\%m");
+#' @param labels Label der x-Achse; default: labels = date_format("%Y-%m");
 #' wenn NULL, dann keine X-Achsen-Beschriftung
 #'
 #' @return ggplot-Objekt
@@ -18,7 +21,7 @@
 #' @import ggplot2
 #'
 
-FitnessAndFatigurePlot <- function(df, toStr, date_breaks = "1 months", date_minor_breaks = "1 month",
+plotFitnessAndFatigure <- function(df, toStr, date_breaks = "1 months", date_minor_breaks = "1 month",
                                    labels = date_format("%Y-%m")) {
 
   p1 <- ggplot(df %>% filter(Date >= as.Date(toStr) - 180), aes(x = Date)) +
@@ -46,19 +49,22 @@ FitnessAndFatigurePlot <- function(df, toStr, date_breaks = "1 months", date_min
 }
 
 
-#' Form plot
+#' Plot fuer den Form Score
+#'
+#' Form plot based on the calcuated Form (TSS) score
 #'
 #' @author Ulf Schepsmeier
 #' @note Date Daten werden von einem Jahr berechnet, aber nur die letzten 180 Tage dargestellt
-#' Plots basieren auf dem Code von [www.r-bloggers.com](https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/)
+#'
+#' @references \url{https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/}
 #'
 #' @param df data.frame mit den Aufbereiteten Daten aus der Funktion calculateTL()
-#' @param toStr character; Enddatum in der Form "\%Y-\%m-\%d"
+#' @param toStr character; Enddatum in der Form "%Y-%m-%d"
 #' @param date_breaks Einteilung der x-Achse; default: date_breaks = "1 months";
 #' wenn NULL, dann keine X-Achsen-Beschriftung
 #' @param date_minor_breaks Untereinteilung der x-Achse; default: minor_breaks = "1 month";
 #' wenn NULL, dann keine X-Achsen-Beschriftung
-#' @param labels Label der x-Achse; default: labels = date_format("\%Y-\%m");
+#' @param labels Label der x-Achse; default: labels = date_format("%Y-%m");
 #' wenn NULL, dann keine X-Achsen-Beschriftung
 #'
 #' @return ggplot-Objekt
@@ -66,7 +72,7 @@ FitnessAndFatigurePlot <- function(df, toStr, date_breaks = "1 months", date_min
 #' @import ggplot2
 #'
 
-FormPlot <- function(df, toStr, date_breaks = "1 months", date_minor_breaks = "1 month",
+plotForm <- function(df, toStr, date_breaks = "1 months", date_minor_breaks = "1 month",
                      labels = date_format("%Y-%m")) {
 
   # data frame for Form zones

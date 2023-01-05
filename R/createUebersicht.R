@@ -1,4 +1,6 @@
-#' Erzeuge eine Ueberischt der Fitnessdaten
+#' Erstellung einer Kennzahlenuebersicht
+#'
+#' Erzeuge eine Ueberischt der Fitnessdaten (Summary) mit den wichtigsten (aggregierten) Kennzahlen
 #'
 #' @author Ulf Schepsmeier
 #'
@@ -6,7 +8,20 @@
 #' @param sportart character-String; aktuell implementiert: "Indoor Cycling" (default),
 #' "Cycling", "Walking", "Running"
 #'
-#' @return uebersicht data.frame mit der Übersicht
+#' @note Die berechneten Kennzahlen sind:
+#' * Trainingszeit
+#' * Distanz
+#' * Durchschnittsgeschwindigkeit
+#' * Maximale Geschwindigkeit
+#' * Durchschnittsherzrate
+#' * Maximale Herzrate
+#' * Standardabweichung bei der Herzrate (für interne Nutzung)
+#' * Standardabweichung bei der Geschwindigkeit(für interne Nutzung)
+#' * Durchschnittstrittanzahl (bei Rad, wenn vorhanden)
+#' * Maximale Trittanzahl (bei Rad, wenn vorhanden)
+#' * Standardabweichung bei der Trittanzahl (bei Rad, wenn vorhanden)
+#'
+#' @return uebersicht data.frame mit der Uebersicht
 #' @export
 #' @import dplyr
 #' @import scales

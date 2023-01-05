@@ -1,3 +1,5 @@
+#' Berechne den Load
+#'
 #' Funktion um die Last (Load) zu berechnen
 #'
 #' @author Ulf Schepsmeier
@@ -10,7 +12,8 @@
 #' @note add a column that contains the load of each activity
 #' one way to calculate load is to multiply time in hours by avg HR and add 2.5 times avg HR
 #' this relates to load by y = ax + b of a = 0.418, b = -150
-#' Based on [www.r-bloggers.com](https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/)
+#'
+#' @references \url{https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/}
 
 
 calculateLoad <- function(df) {
@@ -19,14 +22,16 @@ calculateLoad <- function(df) {
 }
 
 
+#' Erzeugung eines leeren Fitness-DF
+#'
 #' Make a data frame that has every day in our time window represented
 #'
 #' @author Ulf Schepsmeier
 #'
-#' @param fromStr character; Startdatum in der Form "\%Y-\%m-\%d"
-#' @param toStr character; Enddatum in der Form "\%Y-\%m-\%d"
+#' @param fromStr character; Startdatum in der Form "%Y-%m-%d"
+#' @param toStr character; Enddatum in der Form "%Y-%m-%d"
 #'
-#' @note Based on [www.r-bloggers.com](https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/)
+#' @references \url{https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/}
 #'
 #' @return df
 #' @export
@@ -42,6 +47,8 @@ makeDateDF <- function(fromStr, toStr) {
 }
 
 
+#' Aufsummieren der Loads
+#'
 #' Sum the load for each day
 #'
 #' @author Ulf Schepsmeier
@@ -49,7 +56,7 @@ makeDateDF <- function(fromStr, toStr) {
 #' @param df data.frame with the load (calculated with calculateLoad())
 #' @param daydf data.frame from makeDateDF()
 #'
-#' @note Based on [www.r-bloggers.com](https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/)
+#' @references \url{https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/}
 #'
 #' @return newdf merged data.frame
 #' @importFrom stats aggregate
@@ -65,7 +72,9 @@ sumDays <- function(df, daydf) {
 }
 
 
-#' calculate training loads
+#' Berechnung der Fitness Scores
+#'
+#' calculate training loads (Fitness (CTL), Fatigue (ATL) and Form (TSS)) out of the single loads
 #'
 #' @author Ulf Schepsmeier
 #'
@@ -74,11 +83,12 @@ sumDays <- function(df, daydf) {
 #' @return df data.frame with calculated values for Fitness (CTL), Fatigue (ATL) and Form (TSS)
 #' @export
 #'
-#' @note Based on [www.r-bloggers.com](https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/)
-#' Although the stress score acronyms are copyrighted, what they do is not too mysterious.
+#' @note Although the stress score acronyms are copyrighted, what they do is not too mysterious.
 #' Fatigue is how tired you are feeling that week and Fitness is how much training you’ve done over six weeks.
 #' Put another way, Fatigue is an exponentially weighted average of load over 7 days while Fitness
 #' is an exponentially weight average of load over 42 days. Form is the difference between Fatigue and Fitness.
+#'
+#' @references \url{https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/}
 #'
 
 calculateTL <- function(df) {

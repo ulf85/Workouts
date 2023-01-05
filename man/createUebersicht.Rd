@@ -2,7 +2,7 @@
 % Please edit documentation in R/createUebersicht.R
 \name{createUebersicht}
 \alias{createUebersicht}
-\title{Erzeuge eine Ueberischt der Fitnessdaten}
+\title{Erstellung einer Kennzahlenuebersicht}
 \usage{
 createUebersicht(data, sportart = "Indoor Cycling")
 }
@@ -13,10 +13,26 @@ createUebersicht(data, sportart = "Indoor Cycling")
 "Cycling", "Walking", "Running"}
 }
 \value{
-uebersicht data.frame mit der Übersicht
+uebersicht data.frame mit der Uebersicht
 }
 \description{
-Erzeuge eine Ueberischt der Fitnessdaten
+Erzeuge eine Ueberischt der Fitnessdaten (Summary) mit den wichtigsten (aggregierten) Kennzahlen
+}
+\note{
+Die berechneten Kennzahlen sind:
+\itemize{
+\item Trainingszeit
+\item Distanz
+\item Durchschnittsgeschwindigkeit
+\item Maximale Geschwindigkeit
+\item Durchschnittsherzrate
+\item Maximale Herzrate
+\item Standardabweichung bei der Herzrate (für interne Nutzung)
+\item Standardabweichung bei der Geschwindigkeit(für interne Nutzung)
+\item Durchschnittstrittanzahl (bei Rad, wenn vorhanden)
+\item Maximale Trittanzahl (bei Rad, wenn vorhanden)
+\item Standardabweichung bei der Trittanzahl (bei Rad, wenn vorhanden)
+}
 }
 \author{
 Ulf Schepsmeier

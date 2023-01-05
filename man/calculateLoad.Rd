@@ -2,7 +2,7 @@
 % Please edit documentation in R/loadAndFitness.R
 \name{calculateLoad}
 \alias{calculateLoad}
-\title{Funktion um die Last (Load) zu berechnen}
+\title{Berechne den Load}
 \usage{
 calculateLoad(df)
 }
@@ -19,7 +19,9 @@ Funktion um die Last (Load) zu berechnen
 add a column that contains the load of each activity
 one way to calculate load is to multiply time in hours by avg HR and add 2.5 times avg HR
 this relates to load by y = ax + b of a = 0.418, b = -150
-Based on [www.r-bloggers.com](https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/)
+}
+\references{
+\url{https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/}
 }
 \author{
 Ulf Schepsmeier

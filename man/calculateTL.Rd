@@ -2,7 +2,7 @@
 % Please edit documentation in R/loadAndFitness.R
 \name{calculateTL}
 \alias{calculateTL}
-\title{calculate training loads}
+\title{Berechnung der Fitness Scores}
 \usage{
 calculateTL(df)
 }
@@ -13,14 +13,16 @@ calculateTL(df)
 df data.frame with calculated values for Fitness (CTL), Fatigue (ATL) and Form (TSS)
 }
 \description{
-calculate training loads
+calculate training loads (Fitness (CTL), Fatigue (ATL) and Form (TSS)) out of the single loads
 }
 \note{
-Based on [www.r-bloggers.com](https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/)
 Although the stress score acronyms are copyrighted, what they do is not too mysterious.
 Fatigue is how tired you are feeling that week and Fitness is how much training you’ve done over six weeks.
 Put another way, Fatigue is an exponentially weighted average of load over 7 days while Fitness
 is an exponentially weight average of load over 42 days. Form is the difference between Fatigue and Fitness.
+}
+\references{
+\url{https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/}
 }
 \author{
 Ulf Schepsmeier
