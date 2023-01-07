@@ -7,13 +7,13 @@
 #'
 #' @return rawData data.frame mit den eingelesenen und aufbereiteten Daten
 #' @export
-#' @import readr
+#' @importFrom readr read_csv
 #' @import dplyr
 #'
 
 getWalkingData <- function(path, file) {
 
-  rawData <- read_csv(file = paste0(path, file), col_types = cols())
+  rawData <- readr::read_csv(file = paste0(path, file), col_types = cols())
 
   rawData$Zeit <- as.POSIXct(rawData$Time,
                              origin = rawData$Date[1], format = "%H:%M:%S")
