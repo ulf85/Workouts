@@ -23,6 +23,7 @@
 #' @export
 #' @import gt
 #' @import dplyr
+#' @importFrom purrr set_names
 #'
 
 gtJahresvergleichFct <- function(data, type = "Anzahl", short = "#") {
