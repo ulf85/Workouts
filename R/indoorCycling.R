@@ -63,14 +63,14 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling") {
   # wenn die Anzahl der NAs zu groß ist, macht es keinen Sinn diese auszuwerten
   # als Seiteneffekt werden hier auch noch die NAs gefiltert
   if (type == "Cycling") {
-    if (all(is.na(rawData$Trittanzahl)) | sum(is.na(rawData$Trittanzahl)) / nrow(rawData) > 0.5) {
+    if (all(is.na(rawData$Trittanzahl)) || sum(is.na(rawData$Trittanzahl)) / nrow(rawData) > 0.5) {
       rawData <- rawData[rawData$Geschwindigkeit > 10, ]
     } else {
       rawData <- rawData[rawData$Geschwindigkeit > 10 & rawData$Trittanzahl > 10, ]
     }
   }
 
-  if (all(is.na(rawData$Trittanzahl)) | sum(is.na(rawData$Trittanzahl)) / nrow(rawData) > 0.5) {
+  if (all(is.na(rawData$Trittanzahl)) || sum(is.na(rawData$Trittanzahl)) / nrow(rawData) > 0.5) {
     tidyData <- rawData %>%
       filter(aktiv == TRUE) %>%
       select(Zeit, Geschwindigkeit, Herzrate) %>%
@@ -150,7 +150,7 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling") {
                 size = 6,
                 inherit.aes = FALSE)
   }
-  if (rangeHerzrate[1] < 140 &
+  if (rangeHerzrate[1] < 140 &&
       rangeHerzrate[2] >= 120) {
     p <- p +
       geom_rect(data = data.frame(Feature = rep("Herzrate", 1), stringsAsFactors = FALSE),
@@ -177,7 +177,7 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling") {
                 size = 6,
                 inherit.aes = FALSE)
   }
-  if (rangeHerzrate[1] < 158 &
+  if (rangeHerzrate[1] < 158 &&
       rangeHerzrate[2] >= 140) {
     p <- p +
       geom_rect(data = data.frame(Feature = rep("Herzrate", 1), stringsAsFactors = FALSE),
@@ -204,7 +204,7 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling") {
                 size = 6,
                 inherit.aes = FALSE)
   }
-  if (rangeHerzrate[1] < 177 &
+  if (rangeHerzrate[1] < 177 &&
       rangeHerzrate[2] >= 158) {
     p <- p +
       geom_rect(data = data.frame(Feature = rep("Herzrate", 1), stringsAsFactors = FALSE),

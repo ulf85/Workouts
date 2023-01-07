@@ -137,7 +137,7 @@ plotWalking <- function(rawData, type = "Walking") {
                 size = 6,
                 inherit.aes = FALSE)
   }
-  if (rangeHerzrate[1] < 140 &
+  if (rangeHerzrate[1] < 140 &&
      rangeHerzrate[2] >= 120) {
     p <- p +
       geom_rect(data = data.frame(Feature = rep("Herzrate", 1), stringsAsFactors = FALSE),
@@ -164,7 +164,7 @@ plotWalking <- function(rawData, type = "Walking") {
                 size = 6,
                 inherit.aes = FALSE)
   }
-  if (rangeHerzrate[1] < 158 &
+  if (rangeHerzrate[1] < 158 &&
      rangeHerzrate[2] >= 140) {
     p <- p +
       geom_rect(data = data.frame(Feature = rep("Herzrate", 1), stringsAsFactors = FALSE),
@@ -191,7 +191,7 @@ plotWalking <- function(rawData, type = "Walking") {
                 size = 6,
                 inherit.aes = FALSE)
   }
-  if (rangeHerzrate[1] < 177 &
+  if (rangeHerzrate[1] < 177 &&
      rangeHerzrate[2] >= 158) {
     p <- p +
       geom_rect(data = data.frame(Feature = rep("Herzrate", 1), stringsAsFactors = FALSE),
