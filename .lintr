@@ -1,1 +1,1 @@
-linters: with_defaults(camel_case_linter = NULL, line_length_linter = line_length_linter(120), closed_curly_linter = NULL, trailing_whitespace_linter = NULL, function_left_parentheses_linter = NULL, object_name_linter = NULL, cyclocomp_linter = cyclocomp_linter(25))
+linters: linters_with_defaults(camel_case_linter = NULL, line_length_linter = line_length_linter(120), closed_curly_linter = NULL, trailing_whitespace_linter = NULL, function_left_parentheses_linter = NULL, object_name_linter = NULL, cyclocomp_linter = cyclocomp_linter(25))
