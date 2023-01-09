@@ -4,12 +4,14 @@
 #' @param file character-String mit dem Namen des CSV-Files
 #'
 #' @return rawData data.frame mit den aufbereiteten Daten
+#' @importFrom readr read_csv
+#' @importFrom readr cols
 #' @export
 #'
 
 getIndoorCyclingData <- function(path, file) {
 
-  rawData <- read_csv(file = paste0(path, file), col_types = cols())
+  rawData <- readr::read_csv(file = paste0(path, file), col_types = readr::cols())
 
   rawData$Zeit <- as.POSIXct(rawData$Time,
                              origin = rawData$Date[1], format = "%H:%M:%S")
