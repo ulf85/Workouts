@@ -16,12 +16,14 @@ df data.frame with calculated values for Fitness (CTL), Fatigue (ATL) and Form (
 calculate training loads (Fitness (CTL), Fatigue (ATL) and Form (TSB)) out of the single loads
 }
 \details{
-The basis for the calculation of the metrics is the training load. How to calculate this \code{\link{calculateLoad}}.
+The basis for the calculation of the metrics is the training load.
+How to calculate this \code{\link{calculateLoad}}. \cr
 The training stress score (TSS) will be estimated by the heart rate TSS (hrTSS) since I do not have a power meter.
 This has some shortcomings, in particular for HIIT. Nevertheless, it gives us a KPI for our training.
-The acute training load (ACL) and the chronic training load (CTL) give us the basis for this KPI.
-I found some theoretical background here \url{https://www.trainingpeaks.com/learn/articles/the-science-of-the-performance-manager/}
-The training score balance (TSB) can be used to have an idea of the "form".
+The acute training load (ACL) and the chronic training load (CTL) give us the basis for this KPI. \cr
+I found some theoretical background here
+\url{https://www.trainingpeaks.com/learn/articles/the-science-of-the-performance-manager/} \cr
+The training score balance (TSB) can be used to have an idea of the "form". \cr
 All calculations (as I understand the article) are simplifications of Banister’s impulse-response model.
 }
 \note{
