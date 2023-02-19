@@ -10,19 +10,29 @@ calculateTL(df)
 \item{df}{data.frame with the loads (after sumDays())}
 }
 \value{
-df data.frame with calculated values for Fitness (CTL), Fatigue (ATL) and Form (TSS)
+df data.frame with calculated values for Fitness (CTL), Fatigue (ATL) and Form (TSB)
 }
 \description{
-calculate training loads (Fitness (CTL), Fatigue (ATL) and Form (TSS)) out of the single loads
+calculate training loads (Fitness (CTL), Fatigue (ATL) and Form (TSB)) out of the single loads
+}
+\details{
+The basis for the calculation of the metrics is the training load. How to calculate this \code{\link{calculateLoad}}.
+The training stress score (TSS) will be estimated by the heart rate TSS (hrTSS) since I do not have a power meter.
+This has some shortcomings, in particular for HIIT. Nevertheless, it gives us a KPI for our training.
+The acute training load (ACL) and the chronic training load (CTL) give us the basis for this KPI.
+I found some theoretical background here \url{https://www.trainingpeaks.com/learn/articles/the-science-of-the-performance-manager/}
+The training score balance (TSB) can be used to have an idea of the "form".
+All calculations (as I understand the article) are simplifications of Banister’s impulse-response model.
 }
 \note{
 Although the stress score acronyms are copyrighted, what they do is not too mysterious.
 Fatigue is how tired you are feeling that week and Fitness is how much training you’ve done over six weeks.
 Put another way, Fatigue is an exponentially weighted average of load over 7 days while Fitness
-is an exponentially weight average of load over 42 days. Form is the difference between Fatigue and Fitness.
+is an exponentially weight average of load over 42 days. Form (TSB) is the difference between Fatigue and Fitness.
 }
 \references{
-\url{https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/}
+\url{https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/},
+\url{https://help.trainingpeaks.com/hc/en-us/articles/204071944-Training-Stress-Scores-TSS-Explained}
 }
 \author{
 Ulf Schepsmeier

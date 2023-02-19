@@ -83,7 +83,7 @@ plotForm <- function(df, toStr, date_breaks = "1 months", date_minor_breaks = "1
                       col = factor(c("Transition", "Fresh", "Grey zone", "Optimal", "High risk"),
                                    levels = c("Transition", "Fresh", "Grey zone", "Optimal", "High risk")))
 
-  p <- ggplot(df %>% filter(Date >= as.Date(toStr) - 180), aes(x = Date, y = TSS)) +
+  p <- ggplot(df %>% filter(Date >= as.Date(toStr) - 180), aes(x = Date, y = TSB)) +
     geom_line(colour = "#0a0a0a", ) +
     geom_rect(data = rects, inherit.aes = FALSE,
               aes(xmin = xstart, xmax = xend, ymin = ystart, ymax = yend, fill = col),
