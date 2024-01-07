@@ -31,13 +31,13 @@
 #' one way to calculate load is to multiply time in hours by avg HR and add 2.5 times avg HR
 #' this relates to load by y = ax + b of a = 0.418, b = -150 \cr
 #' These numbers are taken from \url{https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/}
-#' and have to be adjusted for me (TODO)
+#' and have to be adjusted for me -> adjusted: a = 0.3398, b = -110
 #'
 #' @references \url{https://www.r-bloggers.com/2022/11/form-and-file-estimating-running-form-in-r/}
 
 
 calculateLoad <- function(df) {
-  df$load <- 0.418 * ((df$Trainingszeit / 60 * df$`&empty; bpm`) + (2.5 * df$`&empty; bpm`)) - 150
+  df$load <- 0.3398 * ((df$Trainingszeit / 60 * df$`&empty; bpm`) + (2.5 * df$`&empty; bpm`)) - 110
   return(df)
 }
 
