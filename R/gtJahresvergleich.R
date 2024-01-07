@@ -59,12 +59,11 @@ gtJahresvergleichFct <- function(data, type = "Anzahl", short = "#") {
     tab_spanner(label = maxJahr, columns = indMaxJahr) %>%
     tab_spanner(label = "Gesamt", columns = indGesamt) %>%
     cols_label(.list = cols_list) %>%
-    tab_style(
-      style = cell_text(color = "red"),
-      locations = cells_body(
-        columns = c(indMaxJahr[2]),
-        rows = jahresvergleichTidy[, indMaxJahr[2]] < 0
-      ))
+    tab_style(style = cell_text(color = "red"),
+              locations = cells_body(
+                columns = c(indMaxJahr[2]),
+                rows = jahresvergleichTidy[, indMaxJahr[2]] < 0
+              ))
 
   # nur wenn wir mehr als zwei Jahre haben
   if (maxJahr - minJahr > 2) {
@@ -76,12 +75,11 @@ gtJahresvergleichFct <- function(data, type = "Anzahl", short = "#") {
       jahresvergleichgt <- jahresvergleichgt %>%
         tab_spanner(label = i, columns = ind) %>%
         cols_label(.list = cols_list) %>%
-        tab_style(
-          style = cell_text(color = "red"),
-          locations = cells_body(
-            columns = c(ind[2]),
-            rows = jahresvergleichTidy[, ind[2]] < 0
-          ))
+        tab_style(style = cell_text(color = "red"),
+                  locations = cells_body(
+                    columns = c(ind[2]),
+                    rows = jahresvergleichTidy[, ind[2]] < 0
+                  ))
     }
   }
 
@@ -89,9 +87,7 @@ gtJahresvergleichFct <- function(data, type = "Anzahl", short = "#") {
   ind <- grep(pattern = ifelse(type == "Anzahl", "^Anzahl_", "^km_"), x = colnames(jahresvergleichTidy))
   jahresvergleichgt <- jahresvergleichgt %>%
     tab_style(
-      style = cell_borders(
-        sides = c("left"),
-        weight = px(1)),
+      style = cell_borders(sides = c("left"), weight = px(1)),
       locations = cells_body(
         columns = ind[-1] # beim ersten nicht
       )

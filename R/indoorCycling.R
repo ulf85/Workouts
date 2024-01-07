@@ -95,13 +95,13 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling") {
 
   if ("Trittanzahl" %in% tidyData$Feature) {
     p <- p + facet_wrap(~Feature, nrow = 1, scales = "free_y", strip.position = "left",
-               labeller = as_labeller(c(Geschwindigkeit = "km/h",
-                                        Herzrate = "bpm",
-                                        Trittanzahl = "rpm")))
+                        labeller = as_labeller(c(Geschwindigkeit = "km/h",
+                                                 Herzrate = "bpm",
+                                                 Trittanzahl = "rpm")))
   } else {
     p <- p + facet_wrap(~Feature, nrow = 1, scales = "free_y", strip.position = "left",
-               labeller = as_labeller(c(Geschwindigkeit = "km/h",
-                                        Herzrate = "bpm")))
+                        labeller = as_labeller(c(Geschwindigkeit = "km/h",
+                                                 Herzrate = "bpm")))
   }
 
   if (type == "Cycling") {
