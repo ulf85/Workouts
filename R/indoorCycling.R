@@ -89,7 +89,7 @@ plotIndoorCycling <- function(rawData, type = "IndoorCycling") {
     geom_line() +
     ylab(NULL) +
     scale_x_datetime(breaks = waiver(), labels = date_format("%H:%M")) +
-    ggtitle(paste0(as.character.Date(tag, format = "%d.%m.%Y"), " (", type, " ",
+    ggtitle(paste0(as.character(format(tag, format = "%d.%m.%Y")), " (", type, " ",
                    round(sum(rawData2$tmp_Distanz), 2), "km, ",
                    Trainingszeit, units(Trainingszeit), ")"))
 

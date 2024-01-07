@@ -91,7 +91,7 @@ plotWalking <- function(rawData, type = "Walking") {
                labeller = as_labeller(c(Geschwindigkeit = "km/h", Herzrate = "bpm"))) +
     ylab(NULL) +
     scale_x_datetime(breaks = waiver(), labels = date_format("%H:%M")) +
-    ggtitle(paste0(as.character.Date(tag, format = "%d.%m.%Y"), " (", type, " ",
+    ggtitle(paste0(as.character(format(tag, format = "%d.%m.%Y")), " (", type, " ",
                    round(sum(rawData$tmp_Distanz), 2), "km, ",
                    Trainingszeit, units(Trainingszeit), ")"))
 
