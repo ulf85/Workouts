@@ -280,31 +280,34 @@ getSummaryIndoorCycling <- function(indoorCyclingData) {
     group_by(trainingNR, Datum) %>%
     summarise(Mean = mean(Geschwindigkeit, na.rm = TRUE),
               Sd = sd(Geschwindigkeit, na.rm = TRUE),
-              Min = min(Geschwindigkeit, na.rm = TRUE),
-              Max = max(Geschwindigkeit, na.rm = TRUE)) %>%
+              Min = ifelse(all(is.na(Geschwindigkeit)), NA, min(Geschwindigkeit, na.rm = TRUE)),
+              Max = ifelse(all(is.na(Geschwindigkeit)), NA, max(Geschwindigkeit, na.rm = TRUE)),
+              .groups = "keep") %>%
     mutate(Messwert = "Geschwindigkeit")
 
   summaryIndoorCycling2 <- indoorCyclingData %>%
     group_by(trainingNR, Datum) %>%
     summarise(Mean = mean(Herzrate, na.rm = TRUE),
               Sd = sd(Herzrate, na.rm = TRUE),
-              Min = min(Herzrate, na.rm = TRUE),
-              Max = max(Herzrate, na.rm = TRUE)) %>%
+              Min = ifelse(all(is.na(Herzrate)), NA, min(Herzrate, na.rm = TRUE)),
+              Max = ifelse(all(is.na(Herzrate)), NA, max(Herzrate, na.rm = TRUE)),
+              .groups = "keep") %>%
     mutate(Messwert = "Herzrate")
 
   summaryIndoorCycling3 <- indoorCyclingData %>%
     group_by(trainingNR, Datum) %>%
     summarise(Mean = mean(Trittanzahl, na.rm = TRUE),
               Sd = sd(Trittanzahl, na.rm = TRUE),
-              Min = min(Trittanzahl, na.rm = TRUE),
-              Max = max(Trittanzahl, na.rm = TRUE)) %>%
+              Min = ifelse(all(is.na(Trittanzahl)), NA, min(Trittanzahl, na.rm = TRUE)),
+              Max = ifelse(all(is.na(Trittanzahl)), NA, max(Trittanzahl, na.rm = TRUE)),
+              .groups = "keep") %>%
     mutate(Messwert = "Trittanzahl")
 
   summaryIndoorCycling <- bind_rows(summaryIndoorCycling1,
                                     summaryIndoorCycling2,
                                     summaryIndoorCycling3)
   summaryIndoorCycling <- summaryIndoorCycling %>%
-    left_join(indoorCyclingData %>% distinct(trainingNR, Datum))
+    left_join(indoorCyclingData %>% distinct(trainingNR, Datum), by = join_by(trainingNR, Datum))
   summaryIndoorCycling <- summaryIndoorCycling %>% arrange(Datum)
 
   return(summaryIndoorCycling)

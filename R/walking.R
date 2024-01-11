@@ -267,23 +267,25 @@ getSummaryWalking <- function(walkingData) {
     group_by(trainingNR, Datum) %>%
     summarise(Mean = mean(Geschwindigkeit, na.rm = TRUE),
               Sd = sd(Geschwindigkeit, na.rm = TRUE),
-              Min = min(Geschwindigkeit, na.rm = TRUE),
-              Max = max(Geschwindigkeit, na.rm = TRUE)) %>%
+              Min = ifelse(all(is.na(Geschwindigkeit)), NA, min(Geschwindigkeit, na.rm = TRUE)),
+              Max = ifelse(all(is.na(Geschwindigkeit)), NA, max(Geschwindigkeit, na.rm = TRUE)),
+              .groups = "keep") %>%
     mutate(Messwert = "Geschwindigkeit")
 
   summaryWalking2 <- walkingData %>%
     group_by(trainingNR, Datum) %>%
     summarise(Mean = mean(Herzrate, na.rm = TRUE),
               Sd = sd(Herzrate, na.rm = TRUE),
-              Min = min(Herzrate, na.rm = TRUE),
-              Max = max(Herzrate, na.rm = TRUE)) %>%
+              Min = ifelse(all(is.na(Herzrate)), NA, min(Herzrate, na.rm = TRUE)),
+              Max = ifelse(all(is.na(Herzrate)), NA, max(Herzrate, na.rm = TRUE)),
+              .groups = "keep") %>%
     mutate(Messwert = "Herzrate")
 
 
   summaryWalking <- bind_rows(summaryWalking1, summaryWalking2)
 
   summaryWalking <- summaryWalking %>%
-    left_join(walkingData %>% distinct(trainingNR, Datum))
+    left_join(walkingData %>% distinct(trainingNR, Datum), by = join_by(trainingNR, Datum))
   summaryWalking <- summaryWalking %>% arrange(Datum)
 
   return(summaryWalking)

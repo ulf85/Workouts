@@ -37,23 +37,14 @@ createUebersicht <- function(data, sportart = "Indoor Cycling") {
       group_by(Datum, trainingNR) %>%
       summarise(
         Trainingszeit = n() / 60,
-        Distanz = round(max(Distanz, na.rm = TRUE),
-          digits = 2
-        ),
-        "&empty; km/h" = round(mean(Geschwindigkeit, na.rm = TRUE),
-          digits = 2
-        ),
-        "Max km/h" = round(max(Geschwindigkeit, na.rm = TRUE),
-          digits = 2
-        ),
-        "&empty; bpm" = round(mean(Herzrate, na.rm = TRUE),
-          digits = 2
-        ),
-        "Max bpm" = round(max(Herzrate, na.rm = TRUE),
-          digits = 2
-        ),
+        Distanz = ifelse(all(is.na(Distanz)), NA, round(max(Distanz, na.rm = TRUE), digits = 2)),
+        "&empty; km/h" = round(mean(Geschwindigkeit, na.rm = TRUE), digits = 2),
+        "Max km/h" = ifelse(all(is.na(Geschwindigkeit)), NA, round(max(Geschwindigkeit, na.rm = TRUE), digits = 2)),
+        "&empty; bpm" = round(mean(Herzrate, na.rm = TRUE), digits = 2),
+        "Max bpm" = ifelse(all(is.na(Herzrate)), NA, round(max(Herzrate, na.rm = TRUE), digits = 2)),
         sdBpm = sd(Herzrate, na.rm = TRUE),
-        sdKmh = sd(Geschwindigkeit, na.rm = TRUE)
+        sdKmh = sd(Geschwindigkeit, na.rm = TRUE),
+        .groups = "keep"
       ) %>%
       mutate(Sportart = sportart)
 
@@ -65,12 +56,11 @@ createUebersicht <- function(data, sportart = "Indoor Cycling") {
           "&empty; rpm" = round(mean(Trittanzahl, na.rm = TRUE),
             digits = 2
           ),
-          "Max rpm" = round(max(Trittanzahl, na.rm = TRUE),
-            digits = 2
-          ),
-          sdRpm = sd(Trittanzahl, na.rm = TRUE)
+          "Max rpm" = ifelse(all(is.na(Trittanzahl)), NA, max(Trittanzahl, na.rm = TRUE)),
+          sdRpm = sd(Trittanzahl, na.rm = TRUE),
+          .groups = "keep"
         )
-      uebersicht <- uebersicht %>% inner_join(uebersicht2)
+      uebersicht <- uebersicht %>% inner_join(uebersicht2, by = join_by(Datum, trainingNR))
       uebersicht$`&empty; rpm` <- as.numeric(uebersicht$`&empty; rpm`)
       uebersicht$`Max rpm` <- as.numeric(uebersicht$`Max rpm`)
     }
@@ -87,9 +77,10 @@ createUebersicht <- function(data, sportart = "Indoor Cycling") {
         group_by(Datum, trainingNR) %>%
         summarise(
           Aufstieg = sum(diffAltitude[diffAltitude > 0], na.rm = TRUE),
-          Abstieg = -sum(diffAltitude[diffAltitude < 0], na.rm = TRUE)
+          Abstieg = -sum(diffAltitude[diffAltitude < 0], na.rm = TRUE),
+          .groups = "keep"
         )
-      uebersicht <- uebersicht %>% inner_join(uebersicht3)
+      uebersicht <- uebersicht %>% inner_join(uebersicht3, by = join_by(Datum, trainingNR))
     }
   }
 
