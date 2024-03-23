@@ -34,10 +34,6 @@ calendarHeatmap <- function(dates, values, title = "", subtitle = "", legendtitl
     stop("dates and values need to have the same length.")
   }
 
-
-  # load required packages
-  require(ggplot2)
-
   my_theme <- function() {
 
     # Colors
