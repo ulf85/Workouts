@@ -8,6 +8,11 @@
 #' @param subtitle Main plot subtitle (optional).
 #' @param legendtitle Legend title (optional).
 #'
+#' @details
+#' Taken from \url{https://quantixed.org/2022/12/26/twitcher-ii-tweet-frequency-and-top-tweets/#heatmap} and
+#' \url{https://www.r-bloggers.com/2023/01/running-around-2022-running-dataviz-in-r/}
+#'
+#'
 #' @return ggplot object
 #'
 #' @export

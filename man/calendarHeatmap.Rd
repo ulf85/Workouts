@@ -23,3 +23,7 @@ ggplot object
 \description{
 Creates a colour coded calendar visualising time series data
 }
+\details{
+Taken from \url{https://quantixed.org/2022/12/26/twitcher-ii-tweet-frequency-and-top-tweets/#heatmap} and
+\url{https://www.r-bloggers.com/2023/01/running-around-2022-running-dataviz-in-r/}
+}
