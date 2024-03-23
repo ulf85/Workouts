@@ -41,8 +41,8 @@ calendarHeatmap <- function(dates, values, title = "", subtitle = "", legendtitl
   my_theme <- function() {
 
     # Colors
-    color.background = "white"
-    color.text = "#22211d"
+    color.background <- "white"
+    color.text <- "#22211d"
 
     # Begin construction of chart
     theme_bw(base_size = 15) +
@@ -107,7 +107,7 @@ calendarHeatmap <- function(dates, values, title = "", subtitle = "", legendtitl
                            direction = "horizontal",
                            barheight = unit(2, units = "mm"),
                            barwidth = unit(75, units = "mm"),
-                           title.position = 'top',
+                           title.position = "top",
                            title.hjust = 0.5
                          )) +
     labs(x = NULL,
@@ -142,12 +142,12 @@ calendarHeatmap <- function(dates, values, title = "", subtitle = "", legendtitl
     x.bottom.right <- ifelse(y.start == 6, df.subset$woy[nrow(df.subset)] + 0.5, df.subset$woy[nrow(df.subset)] - 0.5)
     y.bottom.right <- 0.5
 
-    my.lines<-rbind(my.lines,
-                    data.frame(x    = c(x.top.left, x.bottom.left, x.mid.left01, x.top.left, x.bottom.left),
-                               y    = c(y.top.left, y.bottom.left, y.mid.left01, y.top.left, y.bottom.left),
-                               xend = c(x.top.right, x.bottom.right, x.mid.left02, x.mid.left02, x.mid.left01),
-                               yend = c(y.top.right, y.bottom.right, y.mid.left02, y.mid.left02, y.mid.left01),
-                               year = years))
+    my.lines < -rbind(my.lines,
+                      data.frame(x    = c(x.top.left, x.bottom.left, x.mid.left01, x.top.left, x.bottom.left),
+                                 y    = c(y.top.left, y.bottom.left, y.mid.left01, y.top.left, y.bottom.left),
+                                 xend = c(x.top.right, x.bottom.right, x.mid.left02, x.mid.left02, x.mid.left01),
+                                 yend = c(y.top.right, y.bottom.right, y.mid.left02, y.mid.left02, y.mid.left01),
+                                 year = years))
 
     # lines to separate months
     for (j in 1:12)  {
@@ -166,12 +166,12 @@ calendarHeatmap <- function(dates, values, title = "", subtitle = "", legendtitl
       x.bottom.mid <- ifelse(y.month == 6, x.month + 0.5, x.month - 0.5)
       y.bottom.mid <- 0.5
 
-      my.lines<-rbind(my.lines,
-                      data.frame(x    = c(x.top.mid, x.mid.mid01, x.mid.mid01),
-                                 y    = c(y.top.mid, y.mid.mid01, y.mid.mid01),
-                                 xend = c(x.mid.mid02, x.mid.mid02, x.bottom.mid),
-                                 yend = c(y.mid.mid02, y.mid.mid02, y.bottom.mid),
-                                 year = years))
+      my.lines <- rbind(my.lines,
+                        data.frame(x    = c(x.top.mid, x.mid.mid01, x.mid.mid01),
+                                   y    = c(y.top.mid, y.mid.mid01, y.mid.mid01),
+                                   xend = c(x.mid.mid02, x.mid.mid02, x.bottom.mid),
+                                   yend = c(y.mid.mid02, y.mid.mid02, y.bottom.mid),
+                                   year = years))
 
     }
 
