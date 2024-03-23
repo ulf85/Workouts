@@ -53,8 +53,8 @@ createUebersicht <- function(data, sportart = "Indoor Cycling") {
         filter(aktiv == TRUE) %>%
         group_by(Datum, trainingNR) %>%
         summarise(
-          "&empty; rpm" = round(mean(Trittanzahl, na.rm = TRUE),
-            digits = 2
+          "&empty; rpm" = ifelse(all(is.na(Trittanzahl)), NA, round(mean(Trittanzahl, na.rm = TRUE),
+                                                                    digits = 2)
           ),
           "Max rpm" = ifelse(all(is.na(Trittanzahl)), NA, max(Trittanzahl, na.rm = TRUE)),
           sdRpm = sd(Trittanzahl, na.rm = TRUE),

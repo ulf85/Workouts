@@ -296,8 +296,8 @@ getSummaryIndoorCycling <- function(indoorCyclingData) {
 
   summaryIndoorCycling3 <- indoorCyclingData %>%
     group_by(trainingNR, Datum) %>%
-    summarise(Mean = mean(Trittanzahl, na.rm = TRUE),
-              Sd = sd(Trittanzahl, na.rm = TRUE),
+    summarise(Mean = ifelse(all(is.na(Trittanzahl)), NA, mean(Trittanzahl, na.rm = TRUE)),
+              Sd = ifelse(all(is.na(Trittanzahl)), NA, sd(Trittanzahl, na.rm = TRUE)),
               Min = ifelse(all(is.na(Trittanzahl)), NA, min(Trittanzahl, na.rm = TRUE)),
               Max = ifelse(all(is.na(Trittanzahl)), NA, max(Trittanzahl, na.rm = TRUE)),
               .groups = "keep") %>%
