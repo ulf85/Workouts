@@ -4,7 +4,14 @@
 \alias{calendarHeatmap}
 \title{Calendar Heatmap}
 \usage{
-calendarHeatmap(dates, values, title = "", subtitle = "", legendtitle = "")
+calendarHeatmap(
+  dates,
+  values,
+  title = "",
+  subtitle = "",
+  legendtitle = "",
+  ncol = 1
+)
 }
 \arguments{
 \item{dates}{A vector containing the dates in \code{Date} format.}
@@ -16,6 +23,8 @@ calendarHeatmap(dates, values, title = "", subtitle = "", legendtitle = "")
 \item{subtitle}{Main plot subtitle (optional).}
 
 \item{legendtitle}{Legend title (optional).}
+
+\item{ncol}{number of columns in the plot (optional); default: ncol = 1.}
 }
 \value{
 ggplot object

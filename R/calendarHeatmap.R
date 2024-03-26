@@ -7,6 +7,7 @@
 #' @param title Main plot title (optional).
 #' @param subtitle Main plot subtitle (optional).
 #' @param legendtitle Legend title (optional).
+#' @param ncol number of columns in the plot (optional); default: ncol = 1.
 #'
 #' @details
 #' Taken from \url{https://quantixed.org/2022/12/26/twitcher-ii-tweet-frequency-and-top-tweets/#heatmap} and
@@ -18,7 +19,7 @@
 #' @export
 #' @import ggplot2
 
-calendarHeatmap <- function(dates, values, title = "", subtitle = "", legendtitle = "") {
+calendarHeatmap <- function(dates, values, title = "", subtitle = "", legendtitle = "", ncol = 1) {
 
   # Parameter checks
   if (missing(dates)) {
@@ -93,7 +94,7 @@ calendarHeatmap <- function(dates, values, title = "", subtitle = "", legendtitl
 
   g <- ggplot(df, aes(woy, dowmapped, fill = value)) +
     geom_tile(colour = "darkgrey") +
-    facet_wrap(~year, ncol = 1) + # Facet for years
+    facet_wrap(~year, ncol = ncol) + # Facet for years
     coord_equal(xlim = c(2.5, 54)) + # square tiles
     scale_x_continuous(breaks = 53 / 12 * (1:12) - 1.5, labels = months) +
     my_theme() +
@@ -138,7 +139,7 @@ calendarHeatmap <- function(dates, values, title = "", subtitle = "", legendtitl
     x.bottom.right <- ifelse(y.start == 6, df.subset$woy[nrow(df.subset)] + 0.5, df.subset$woy[nrow(df.subset)] - 0.5)
     y.bottom.right <- 0.5
 
-    my.lines < -rbind(my.lines,
+    my.lines <- rbind(my.lines,
                       data.frame(x    = c(x.top.left, x.bottom.left, x.mid.left01, x.top.left, x.bottom.left),
                                  y    = c(y.top.left, y.bottom.left, y.mid.left01, y.top.left, y.bottom.left),
                                  xend = c(x.top.right, x.bottom.right, x.mid.left02, x.mid.left02, x.mid.left01),
