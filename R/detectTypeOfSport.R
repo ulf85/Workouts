@@ -23,18 +23,16 @@ detectTypeOfSport <- function(path, file) {
 
   outputPath <- paste0(path, "tmp/")
 
-  if (!dir.exists(outputPath)) {
-    dir.create(outputPath)
-  }
-
   fit2csv(path, file, outputPath)
 
   # .csv einlesen
   outputFile <- gsub(pattern = ".fit", replacement = ".csv", x = file)
   rawData <- readr::read_csv(file = paste0(outputPath, outputFile), col_types = readr::cols())
 
-  # Logik um die Sportarten zu unterscheiden
-  # wenn Latitute/Longitude existieren, dann war GPS an und damit waren wir draußen -> walking, running, cycling
+
+  ## Logik um die Sportarten zu unterscheiden
+
+  # 1) wenn Latitute/Longitude existieren, dann war GPS an und damit waren wir draußen -> walking, running, cycling
   # ansonsten drinnen -> indoorCycling
   if (all(is.null(rawData$Latitude)) || all(rawData$Latitude == 0)) {
     sportart <- "indoorCycling"
@@ -44,7 +42,7 @@ detectTypeOfSport <- function(path, file) {
     return(sportart)
   }
 
-  # wenn Cadence da ist, haben wir auch ein Indiz für cycling
+  # 2) wenn Cadence da ist, haben wir auch ein Indiz für cycling
   # da der Sensor aber nicht an allen Rädern ist, kann er auch leer sein
   if ("Cadence" %in% colnames(rawData) && !is.null(rawData$Cadence) && any(rawData$Cadence > 0)) {
     sportart <- "cycling"
@@ -54,7 +52,7 @@ detectTypeOfSport <- function(path, file) {
     return(sportart)
   }
 
-  # bleibt uns noch die Geschwindigkeit, um zu unterscheiden, ob walking, running oder cycling
+  # 3) bleibt uns noch die Geschwindigkeit, um zu unterscheiden, ob walking, running oder cycling
   # walking und running können recht nah bei einander sein. Bei running ist dann aber die 'Heartrate' höher.
   # Ausnahme: walking in den Bergen. Dazu benötige ich die Elevation (die es leider nach dem Update nicht mehr gibt)
   meanSpeed <- mean(rawData$Speed * 3.6, na.rm = TRUE)

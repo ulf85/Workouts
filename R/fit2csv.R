@@ -18,6 +18,11 @@ fit2csv <- function(path, file, outpath = NULL) {
   if (is.null(outpath)) {
     outpath <- gsub(pattern = "fit", replacement = "fixed", x = path)
   }
+
+  if (!dir.exists(outpath)) {
+    dir.create(outpath)
+  }
+
   befehl <- paste0("C:\\\"Program Files\"\\GPSBabel\\gpsbabel -t -i garmin_fit,allpoints=1 -f ",
                    path, file, " -o unicsv -F ", outpath, outfile)
 
