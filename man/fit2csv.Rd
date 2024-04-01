@@ -4,12 +4,15 @@
 \alias{fit2csv}
 \title{.fit Dateien umwandeln/auslesen}
 \usage{
-fit2csv(path, file)
+fit2csv(path, file, outpath = NULL)
 }
 \arguments{
 \item{path}{character-String mit dem Pfad zu dem fit-File}
 
 \item{file}{character-String mit dem Namen der fit-Datei}
+
+\item{outpath}{character-String mit dem Pfad für den Output; default: outpath = NULL, i.e. the fit-path from 'path'
+is replaced with 'fixed'}
 }
 \value{
 boolean ob die Umwandlung funktioniert hat oder nicht

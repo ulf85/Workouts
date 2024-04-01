@@ -4,16 +4,20 @@
 #'
 #' @param path character-String mit dem Pfad zu dem fit-File
 #' @param file character-String mit dem Namen der fit-Datei
+#' @param outpath character-String mit dem Pfad für den Output; default: outpath = NULL, i.e. the fit-path from 'path'
+#' is replaced with 'fixed'
 #'
 #' @return boolean ob die Umwandlung funktioniert hat oder nicht
 #' @export
 #' @note Das Programm GPSBabel muss installiert sein
 #'
 
-fit2csv <- function(path, file) {
+fit2csv <- function(path, file, outpath = NULL) {
 
   outfile <- gsub(pattern = ".fit", replacement = ".csv", x = file)
-  outpath <- gsub(pattern = "fit", replacement = "fixed", x = path)
+  if (is.null(outpath)) {
+    outpath <- gsub(pattern = "fit", replacement = "fixed", x = path)
+  }
   befehl <- paste0("C:\\\"Program Files\"\\GPSBabel\\gpsbabel -t -i garmin_fit,allpoints=1 -f ",
                    path, file, " -o unicsv -F ", outpath, outfile)
 
