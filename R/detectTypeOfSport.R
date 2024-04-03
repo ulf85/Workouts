@@ -1,6 +1,6 @@
 #' .fit Dateien erkennen und einer Sportart zuordnen
 #'
-#' Nach einer Umstellung von Wahoo ist es schwieriger die .fir Dateien in Dropbox an die richtige Stelle zu tun.
+#' Nach einer Umstellung von Wahoo ist es schwieriger die .fit Dateien in Dropbox an die richtige Stelle zu tun.
 #' Aktuell passiert das manuell. Um das zu automatisieren muss ich automatisch erkennen, ob es sich um
 #' indoor Cycling, Cycling, walking oder running Daten handelt, um die .fit Datei in den richtigen Ordner zu kopieren.
 #'
