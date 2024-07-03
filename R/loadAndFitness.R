@@ -123,12 +123,13 @@ sumDays <- function(df, daydf) {
 #'
 
 calculateTL <- function(df) {
-  for (i in seq_len(nrow(df))) {
+  n <- nrow(df)
+  for (i in seq_len(n)) {
     # add today's load to training load(s)
     df$ATL[i] <- df$ATL[i] + df$load[i]
     df$CTL[i] <- df$CTL[i] + df$load[i]
     for (j in (i + 1) : (i + 42)) {
-      if (j > nrow(df)) {
+      if (j > n) {
         break
       }
       df$ATL[j] <- df$ATL[i] * exp(-(j - i) / 7)
