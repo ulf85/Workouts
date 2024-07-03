@@ -28,7 +28,7 @@ calendarHeatmap <- function(dates, values, title = "", subtitle = "", legendtitl
   if (missing(values)) {
     stop("Need to specify a values vector.")
   }
-  if (class(dates) != "Date") {
+  if (!inherits(dates, "Date")) {
     stop("dates vector need to be in Date format.")
   }
   if (length(dates) != length(values)) {
