@@ -28,10 +28,10 @@ plotFitnessAndFatigure <- function(df, toStr, date_breaks = "1 months", date_min
     geom_area(aes(y = CTL), fill = "#58abdf", alpha = 0.2) +
     geom_line(aes(y = CTL), colour = "#58abdf") +
     geom_line(aes(y = ATL), colour = "#5e3cc4") +
-    geom_text(aes(x = as.Date(toStr), y = 0, vjust = "inward", hjust = "inward", label = "Fitness"),
-              color = "#58abdf") +
-    geom_text(aes(x = as.Date(toStr) - 180, y = max(ATL), vjust = "inward", hjust = "inward", label = "Fatigue"),
-              color = "#5e3cc4") +
+    annotate("text", x = as.Date(toStr), y = 0, vjust = "inward", hjust = "inward", label = "Fitness",
+             color = "#58abdf") +
+    annotate("text", x = as.Date(toStr) - 180, y = max(df$ATL), vjust = "inward", hjust = "inward", label = "Fatigue",
+             color = "#5e3cc4") +
     labs(x = "", y = "Training load per day") +
     theme_bw() +
     theme(legend.position = "none")
