@@ -36,7 +36,7 @@ plotEntwicklung <- function(data, date_breaks = "3 months", date_minor_breaks = 
   }
   if (trend) {
     p <- p +
-      geom_smooth(color = "red", se = FALSE)
+      geom_smooth(color = "red", se = FALSE, formula = y ~ x, method = loess)
   }
   p
 }
