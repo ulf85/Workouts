@@ -34,7 +34,19 @@ getElevation <- function(df) {
 
   # check
   if (http_error(res)) {
-    stop("Error in API call")
+    status <- http_status(res)
+    if (status$reason == "Request Entity Too Large") {
+      # split data.frame in two chunks and call this function recursively
+      n <- nrow(df)
+      df_res <- NULL
+      for (i in seq_len(2)) {
+        tmp_df_res <- getElevation(df[(round(n / 2) * (i - 1) + 1) : min(n, (round(n / 2) * i)), ])
+        df_res <- df_res %>% bind_rows(tmp_df_res)
+      }
+      return(df_res)
+    } else {
+      stop("Error in API call")
+    }
   }
 
   # modify response
