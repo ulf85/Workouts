@@ -28,7 +28,7 @@ getElevation <- function(df) {
   # POST request
   url <- "https://api.open-elevation.com/api/v1/lookup"
   encoding <- content_type_json()
-  body <- jsonlite::toJSON(df, pretty = TRUE)
+  body <- jsonlite::toJSON(df, pretty = TRUE, digits = 5)
   body <- paste("{ \"locations\": ", body, "}")
   res <- POST(url, encoding, body = body)
 
