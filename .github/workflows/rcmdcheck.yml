@@ -33,6 +33,7 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
+          cache: true
       - name: Check
         uses: r-lib/actions/check-r-package@v2
         with:
