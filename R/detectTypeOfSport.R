@@ -82,4 +82,5 @@ detectTypeOfSport <- function(path, file) {
 
   # tmp file löschen und raus
   file.remove(paste0(outputPath, outputFile))
+  sportart
 }

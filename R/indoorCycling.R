@@ -35,6 +35,7 @@ getIndoorCyclingData <- function(path, file) {
       rawData$aktiv[i] <- FALSE
     }
   }
+  rawData
 }
 
 
@@ -307,4 +308,5 @@ getSummaryIndoorCycling <- function(indoorCyclingData) {
   summaryIndoorCycling <- summaryIndoorCycling %>%
     left_join(indoorCyclingData %>% distinct(trainingNR, Datum), by = join_by(trainingNR, Datum))
   summaryIndoorCycling <- summaryIndoorCycling %>% arrange(Datum)
+  summaryIndoorCycling
 }
