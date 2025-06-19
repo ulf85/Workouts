@@ -54,6 +54,7 @@ getWalkingData <- function(path, file) {
   }
 
   rawData <- rawData %>% rename("Herzrate" = "Heartrate", "Datum" = "Date")
+  rawData
 }
 
 
@@ -285,4 +286,5 @@ getSummaryWalking <- function(walkingData) {
   summaryWalking <- summaryWalking %>%
     left_join(walkingData %>% distinct(trainingNR, Datum), by = join_by(trainingNR, Datum))
   summaryWalking <- summaryWalking %>% arrange(Datum)
+  summaryWalking
 }
