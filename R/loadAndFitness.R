@@ -38,6 +38,7 @@
 
 calculateLoad <- function(df) {
   df$load <- 0.3398 * ((df$Trainingszeit / 60 * df$`&empty; bpm`) + (2.5 * df$`&empty; bpm`)) - 110
+  df
 }
 
 
@@ -61,6 +62,7 @@ makeDateDF <- function(fromStr, toStr) {
   df <- data.frame(Date = temp,
                    ATL = rep(0, length(temp)),
                    CTL = rep(0, length(temp)))
+  df
 }
 
 
@@ -84,6 +86,7 @@ sumDays <- function(df, daydf) {
   tempdf <- aggregate(load ~ Datum, data = df, sum)
   newdf <- merge(daydf, tempdf, all.x = TRUE, by.x = "Date", by.y = "Datum")
   newdf[is.na(newdf)] <- 0
+  newdf
 }
 
 
@@ -135,4 +138,5 @@ calculateTL <- function(df) {
   df[2] <- df[2] / 7
   df[3] <- df[3] / 42
   df$TSB <- df$CTL - df$ATL
+  df
 }
