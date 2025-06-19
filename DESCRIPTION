@@ -4,8 +4,8 @@ Title: Functions To Analyse My Workouts
 Version: 0.2.1
 Author: Ulf Schepsmeier
 Maintainer: Ulf Schepsmeier <ulf@schepsmeier-muenchen.de>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Provides a collection of R functions for analyzing and visualizing workout data, including running, walking, cycling, and indoor cycling activities. The package supports importing data from .fit files (exported from the Wahoo app), converting them to CSV using GPSBabel, and generating summaries and plots for further analysis. Documentation and code comments are primarily in German.
+    Designed for personal use, but can be adapted for similar workout data analysis workflows.
 Imports: dplyr, ggplot2, readr, scales, tidyr, gt, purrr, httr, jsonlite
 License: GPL (>= 2)
 Encoding: UTF-8
