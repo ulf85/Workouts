@@ -13,7 +13,7 @@
 #'
 
 fit2csv <- function(path, file, outpath = NULL) {
-  
+
   outfile <- gsub(pattern = ".fit", replacement = ".csv", x = file)
   if (is.null(outpath)) {
     outpath <- gsub(pattern = "fit", replacement = "fixed", x = path)
@@ -25,8 +25,9 @@ fit2csv <- function(path, file, outpath = NULL) {
 
   infile_path <- file.path(path, file)
   outfile_path <- file.path(outpath, outfile)
-  gpsbabel_path <- 'C:/Program Files/GPSBabel/gpsbabel'
-  befehl <- paste0('"', gpsbabel_path, '" -t -i garmin_fit,allpoints=1 -f "', infile_path, '" -o unicsv -F "', outfile_path, '"')
+  gpsbabel_path <- "C:/Program Files/GPSBabel/gpsbabel"
+  befehl <- paste0('"', gpsbabel_path, '" -t -i garmin_fit,allpoints=1 -f "', 
+  infile_path, '" -o unicsv -F "', outfile_path, '"')
 
   exit_status <- system(befehl, intern = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)
 
