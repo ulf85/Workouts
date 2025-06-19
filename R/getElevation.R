@@ -52,4 +52,5 @@ getElevation <- function(df) {
   # modify response
   jsonRespParsed <- content(res, as = "parsed")
   df_res <- jsonRespParsed$results %>% bind_rows %>% select(latitude, longitude, elevation)
+  df_res
 }
