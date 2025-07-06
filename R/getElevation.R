@@ -45,6 +45,7 @@ getElevation <- function(df) {
       }
       return(df_res)
     } else {
+      print(status$reason)
       stop("Error in API call")
     }
   }
