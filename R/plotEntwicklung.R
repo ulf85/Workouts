@@ -12,6 +12,7 @@
 #' @return ggplot-Objekt
 #' @export
 #' @import ggplot2
+#' @importFrom stats loess
 #'
 
 plotEntwicklung <- function(data, date_breaks = "3 months", date_minor_breaks = "1 month",
